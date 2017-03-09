@@ -6,22 +6,27 @@ import Dashboard from '@/components/Dashboard';
 
 Vue.use(Router);
 
+const routes = [
+  {
+    path: '/',
+    name: 'Home',
+    component: Home,
+  },
+  {
+    path: '/tables',
+    name: 'Tables',
+    component: Tables,
+  },
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: Dashboard,
+  },
+];
+
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'Home',
-      component: Home,
-    },
-    {
-      path: '/tables',
-      name: 'Tables',
-      component: Tables,
-    },
-    {
-      path: '/dashboard',
-      name: 'Dashboard',
-      component: Dashboard,
-    },
-  ],
+  mode: 'history',
+  routes,
+  linkActiveClass: 'is-active',
 });
+

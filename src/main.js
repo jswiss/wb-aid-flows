@@ -15,6 +15,7 @@ new Vue({
     <navbar />
     <section class="section">
       <div class="container is-fluid">
+      <router-view></router-view>
       </div>
     </section>
   </div>
