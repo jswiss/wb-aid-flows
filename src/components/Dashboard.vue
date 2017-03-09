@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="dashboard">
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <ul>
@@ -22,10 +22,10 @@
 
 <script>
 export default {
-  name: 'home',
+  name: 'dashboard',
   data() {
     return {
-      msg: 'Welcome to the home page',
+      msg: 'Welcome to Dash Town',
     };
   },
 };
