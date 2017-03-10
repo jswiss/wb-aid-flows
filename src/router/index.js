@@ -2,12 +2,12 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Vuex from 'vuex';
 import Home from '@/components/Home';
-import Tables from '@/components/Tables';
-import TestTable from '@/components/TestTable';
-import TestTable2 from '@/components/TestTable2';
-import TestTable3 from '@/components/TestTable3';
-import TestTable4 from '@/components/TestTable4';
-import Dashboard from '@/components/Dashboard';
+import Tables from '@/components/tables/Tables';
+import TestTable from '@/components/tables/TestTable';
+import TestTable2 from '@/components/tables/TestTable2';
+import TestTable3 from '@/components/tables/TestTable3';
+import TestTable4 from '@/components/tables/TestTable4';
+import Dashboard from '@/components/charts/Dashboard';
 
 Vue.use(Router);
 Vue.use(Vuex);
