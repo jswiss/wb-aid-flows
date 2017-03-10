@@ -11,14 +11,10 @@
         <i class="fa fa-list-alt"></i>Tables
       </router-link>
     </div>
-    <div class="nav-right">
-      <span class="nav-item">
-        <a class="button">Logout</a>
-      </span>
-    </div>
   </nav>
 </template>
 <script type="text/javascript">
+
 export default {
   name: 'navbar',
 };
