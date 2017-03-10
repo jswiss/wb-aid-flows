@@ -4,8 +4,12 @@
     Table content will go here
   </div>
 </template>
-<script>
+<script type="text/javascript">
 export default {
   name: 'tables',
 };
 </script>
+
+<style scoped>
+
+</style>

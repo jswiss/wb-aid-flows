@@ -4,8 +4,12 @@
     Dashboard content will go here
   </div>
 </template>
-<script>
+<script type="text/javascript">
 export default {
   name: 'dashboard',
 };
-</script>
+</script> 
+
+<style scoped>
+
+</style>

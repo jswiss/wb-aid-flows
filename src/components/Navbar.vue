@@ -18,13 +18,13 @@
     </div>
   </nav>
 </template>
-<script>
+<script type="text/javascript">
 export default {
   name: 'navbar',
 };
 </script>
 
-<style>
+<style scoped>
   .is-tab {
     text-indent: 10px;
   }

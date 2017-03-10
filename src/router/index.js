@@ -8,6 +8,7 @@ import Dashboard from '@/components/Dashboard';
 
 Vue.use(Router);
 Vue.use(Vuex);
+Vue.use(axios);
 
 const routes = [
   {

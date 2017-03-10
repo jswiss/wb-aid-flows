@@ -4,8 +4,12 @@
     Home content will go here
   </div>
 </template>
-<script>
+<script type="text/javascript">
 export default {
   name: 'home',
 };
 </script>
+
+<style scoped>
+
+</style>
