@@ -1,7 +1,18 @@
 <!-- tables -->
 <template lang="html">
   <div id="test-table" class="container is-fluid">
-    <table class="table is-bordered is-striped is-narrow">
+  <br>
+  <a class="button is-primary toExcel"
+  v-on:click="toExcel"
+  >
+    <span class="icon">
+      <i class="fa fa-table"></i>
+    </span>
+    <span>Export Table</span>
+  </a>
+  <br>
+  <br>
+    <table class="table is-bordered is-striped is-narrow" id="excelTable">
       <thead>
         <tr>
           <th>donor</th>
@@ -39,6 +50,30 @@ export default {
     };
   },
   name: 'TestTable',
+  methods: {
+    toExcel() {
+      const uri = 'data:application/vnd.ms-excel;base64,';
+      const template = `
+        
+      `;
+
+      const base64 = function base64(s) {
+        return window.btoa(unescape(encodeURIComponent(s)));
+      };
+      const format = function format(s, c) {
+        return s.replace(/{(\w+)}/g, (m, p) => c[p]);
+      };
+      const toExcel = document.getElementById('excelTable').innerHTML;
+      const ctx = {
+        worksheet: name || '',
+        table: toExcel,
+      };
+      const link = document.createElement('a');
+      link.download = 'TestTable.xls';
+      link.href = uri + base64(format(template, ctx));
+      link.click();
+    },
+  },
 };
 </script>
 
