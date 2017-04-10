@@ -3,7 +3,7 @@ import Router from 'vue-router';
 import Vuex from 'vuex';
 import Home from '@/components/Home';
 import Tables from '@/components/tables/Tables';
-import Vuetable from '@/components/tables/TestTable';
+import TestTable from '@/components/tables/TestTable';
 import TestTable2 from '@/components/tables/TestTable2';
 import TestTable3 from '@/components/tables/TestTable3';
 import TestTable4 from '@/components/tables/TestTable4';
@@ -30,8 +30,8 @@ const routes = [
     children: [
       {
         path: 'test-table',
-        name: 'Vuetable',
-        component: Vuetable,
+        name: 'TestTable',
+        component: TestTable,
       }, {
         path: 'test-table2',
         name: 'TestTable2',
