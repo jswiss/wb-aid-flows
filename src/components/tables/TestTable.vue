@@ -1,116 +1,180 @@
-<!-- tables -->
-<template lang="html">
-  <div id="test-table" class="container is-fluid">
-  <br>
-  <a 
-  class="button is-primary exportClick"
-  v-on:click="exportClick()"
-  >
-    <span class="icon">
-      <i class="fa fa-table"></i>
-    </span>
-    <span>Export Table</span>
-  </a>
-  <br>
-  <br>
-    <table class="table is-bordered is-striped is-narrow" id="csvTable">
-      <thead>
-        <tr>
-          <th>donor</th>
-          <th>date</th>
-          <th>currency</th>
-          <th>amount</th>
-          <th>sector</th>
-        </tr>
-      </thead>
-      <tbody v-for="item in rows">
-        <tr>
-          <td>{{ item.name }}</td>
-          <td>{{ item.date }}</td>
-          <td>{{ item.currency }}</td>
-          <td>{{ item.amount }}</td>
-          <td>{{ item.sector }}</td>
-        </tr>
-      </tbody>
-    </table>
+<template>
+  <div class="container">
+    <nav class="level is-marginless">
+      <div class="level-left">
+        <div class="level-item">
+          <filter-bar></filter-bar>
+        </div>
+      </div>
+      <div class="level-right">
+        <vuetable-pagination-info ref="paginationInfo"
+        ></vuetable-pagination-info>
+      </div>
+    </nav>
+    <vuetable ref="vuetable"
+      api-url="http://vuetable.ratiw.net/api/users"
+      :fields="fields"
+      :css="css"
+      pagination-path=""
+      :multi-sort="true"
+      multi-sort-key="ctrl"
+      :sort-order="sortOrder"
+      detail-row-component="my-detail-row"
+      :append-params="moreParams"
+      @vuetable:cell-clicked="onCellClicked"
+      @vuetable:pagination-data="onPaginationData"
+    ></vuetable>
+    <bulma-pagination ref="pagination"
+      @vuetable-pagination:change-page="onChangePage"
+    ></bulma-pagination>
   </div>
 </template>
-<script type="text/javascript">
 
-const headers = [
-  { title: 'Donor' },
-  { title: 'Date' },
-  { title: 'Currency' },
-  { title: 'Amount' },
-  { title: 'Sector' },
-];
+<script>
+import accounting from 'accounting';
+import moment from 'moment';
+import Vue from 'vue';
+import VueEvents from 'vue-events';
+import Vuetable from 'vuetable-2/src/components/Vuetable';
+import VuetablePaginationInfo from 'vuetable-2/src/components/VuetablePaginationInfo';
+import BulmaPagination from './BulmaPagination';
+import CustomActions from './CustomActions';
+import DetailRow from './DetailRow';
+import FilterBar from './FilterBar';
 
-const rows = [
-  { name: 'DFID', date: '30 May, 2017', currency: 'GBP', amount: 250000000, sector: 'humanitarian' },
-  { name: 'USAID', date: '10 April, 2017', currency: 'USD', amount: 300000000, sector: 'education' },
-  { name: 'Norway', date: '5 March, 2017', currency: 'EUR', amount: 150000000, sector: 'humanitarian' },
-  { name: 'DFATD', date: '12 November, 2017', currency: 'USD', amount: 25000000, sector: 'SSR' },
-  { name: 'DANIDA', date: '3 June, 2015', currency: 'EUR', amount: 40000000, sector: 'humanitarian' },
-  { name: 'EU', date: '15 May, 2014', currency: 'EUR', amount: 400000000, sector: 'WASH' },
-];
+Vue.use(VueEvents);
+
+Vue.component('custom-actions', CustomActions);
+Vue.component('my-detail-row', DetailRow);
 
 export default {
+  name: 'TestTable',
+  components: {
+    Vuetable,
+    BulmaPagination,
+    VuetablePaginationInfo,
+    FilterBar,
+  },
   data() {
     return {
-      rows,
-      headers,
-      dtHandle: null,
+      css: {
+        tableClass: 'table is-bordered is-striped',
+        ascendingIcon: 'fa fa-chevron-up',
+        descendingIcon: 'fa fa-chevron-down',
+        sortHandleIcon: 'fa fa-bars',
+      },
+      fields: [
+        {
+          name: '__checkbox',
+          title: '#',
+          titleClass: 'has-text-centered',
+          dataClass: 'has-text-centered',
+        },
+        {
+          name: 'name',
+          sortField: 'name',
+        },
+        {
+          name: 'email',
+          sortField: 'email',
+        },
+        {
+          name: 'age',
+          sortField: 'birthdate',
+          titleClass: 'has-text-centered',
+          dataClass: 'has-text-centered',
+        },
+        {
+          name: 'birthdate',
+          sortField: 'birthdate',
+          titleClass: 'has-text-centered',
+          dataClass: 'has-text-centered',
+          callback: 'formatDate|DD-MM-YYYY',
+        },
+        {
+          name: 'nickname',
+          sortField: 'nickname',
+          callback: 'allcap',
+        },
+        {
+          name: 'gender',
+          sortField: 'gender',
+          titleClass: 'has-text-centered',
+          dataClass: 'has-text-centered',
+          callback: 'genderLabel',
+        },
+        {
+          name: 'salary',
+          sortField: 'salary',
+          titleClass: 'has-text-centered',
+          dataClass: 'has-text-right',
+          callback: 'formatNumber',
+        },
+        {
+          name: '__component:custom-actions',
+          title: 'Actions',
+          titleClass: 'has-text-centered',
+          dataClass: 'has-text-centered',
+        },
+      ],
+      sortOrder: [
+        {
+          field: 'email',
+          sortField: 'email',
+          direction: 'asc',
+        },
+      ],
+      moreParams: {},
     };
   },
-  name: 'TestTable',
   methods: {
-    downloadCSV(csv, filename) {
-      // eslint-disable-next-line
-      const csvFile = new Blob([csv], { type: 'text/csv' });
-       // Download link
-      const downloadLink = document.createElement('button');
-
-      // File name
-      downloadLink.download = filename;
-
-      // We have to create a link to the file
-      downloadLink.href = window.URL.createObjectURL(csvFile);
-
-      // Make sure that the link is not displayed
-      downloadLink.style.display = 'none';
-
-      // Add the link to your DOM
-      document.body.appendChild(downloadLink);
-
-      // Lanzamos
-      downloadLink.click();
+    allcap(value) {
+      return value.toUpperCase();
     },
-    tableToCSV(html, filename) {
-      // eslint-disable-next-line
-      console.log('balls');
-      const csv = [];
-      const tableRows = document.querySelectorAll('table tr');
-      for (let i = 0; i < rows.length; i + 1) {
-        const row = [];
-        const cols = tableRows[i].querySelectorAll('td, th');
-        for (let j = 0; j < rows.length; j + 1) {
-          row.push(cols[j].innerText);
-          csv.push(row.join(','));
-          // eslint-disable-next-line
-        }
-        this.downloadCSV(csv.join('\n'), filename);
-      }
+    genderLabel(value) {
+      return value === 'M'
+        ? '<span class="tag is-primary is-medium"><span class="icon"><i class="fa fa-mars"></i></span>&nbsp;Male</span>'
+        : '<span class="tag is-danger is-medium"><span class="icon"><i class="fa fa-venus"></i></span>&nbsp;Female</span>';
     },
-    exportClick() {
-      const html = document.querySelector('table').outerHTML;
-      // eslint-disable-next-line
-      console.log('fuckoff');
-      this.tableToCSV(html, 'table.csv');
+    formatNumber(value) {
+      return accounting.formatNumber(value, 2);
     },
+    formatDate(value, fmt = 'D MMM YYYY') {
+      return (value == null) ? '' : moment(value, 'YYYY-MM-DD').format(fmt);
+    },
+    onPaginationData(paginationData) {
+      this.$refs.pagination.setPaginationData(paginationData);
+      this.$refs.paginationInfo.setPaginationData(paginationData);
+    },
+    onChangePage(page) {
+      this.$refs.vuetable.changePage(page);
+    },
+    // eslint-disable-next-line
+    onCellClicked(data, field, event) {
+      // eslint-disable-next-line
+      console.log('cellClicked: ', field.name);
+      this.$refs.vuetable.toggleDetailRow(data.id);
+    },
+    onFilterSet(filterText) {
+      this.moreParams = {
+        // eslint-disable-next-line
+        'filter': filterText,
+      };
+      Vue.nextTick(() => this.$refs.vuetable.refresh());
+    },
+    onFilterReset() {
+      this.moreParams = {};
+      this.$refs.vuetable.refresh();
+      Vue.nextTick(() => this.$refs.vuetable.refresh());
+    },
+  },
+  mounted() {
+    this.$events.listen('filter-set', filterText => this.onFilterSet(filterText));
+    this.$events.listen('filter-reset', this.onFilterSet);
+  },
+  beforeDestroy() {
+    this.$events.remove('filter-set');
+    this.$events.remove('filter-reset');
   },
 };
 </script>
-
-<style>
-
-</style>
