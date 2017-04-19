@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Vuex from 'vuex';
+import * as d3 from 'd3';
 import Home from '@/components/Home';
 import Tables from '@/components/tables/Tables';
 import TestTable from '@/components/tables/TestTable';
@@ -17,6 +18,7 @@ import Chart6 from '@/components/charts/Chart6';
 
 Vue.use(Router);
 Vue.use(Vuex);
+Vue.use(d3);
 
 const routes = [
   {

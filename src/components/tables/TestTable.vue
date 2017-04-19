@@ -7,6 +7,12 @@
         </div>
       </div>
       <div class="level-right">
+          <a class="button is-primary exportClick" v-on:click="exportClick">
+          <span class="icon">
+            <i class="fa fa-table"></i>
+          </span>
+          <span>Export Table</span>
+          </a>
         <vuetable-pagination-info ref="paginationInfo"
         ></vuetable-pagination-info>
       </div>
@@ -32,6 +38,7 @@
 
 <script>
 import accounting from 'accounting';
+// import * as d3 from 'd3';
 import moment from 'moment';
 import Vue from 'vue';
 import VueEvents from 'vue-events';
@@ -41,6 +48,10 @@ import BulmaPagination from './BulmaPagination';
 import CustomActions from './CustomActions';
 import DetailRow from './DetailRow';
 import FilterBar from './FilterBar';
+
+const fata = require('./test.csv');
+// eslint-disable-next-line
+console.log(fata);
 
 Vue.use(VueEvents);
 
@@ -137,7 +148,7 @@ export default {
         : '<span class="tag is-danger is-medium"><span class="icon"><i class="fa fa-venus"></i></span>&nbsp;Female</span>';
     },
     formatNumber(value) {
-      return accounting.formatNumber(value, 2);
+      return accounting.formatNumber(value, 0);
     },
     formatDate(value, fmt = 'D MMM YYYY') {
       return (value == null) ? '' : moment(value, 'YYYY-MM-DD').format(fmt);
@@ -167,6 +178,12 @@ export default {
       this.$refs.vuetable.refresh();
       Vue.nextTick(() => this.$refs.vuetable.refresh());
     },
+    exportClick() {
+      // d3.csv(csv, (d) => {
+      //   //eslint-disable-next-line
+      //   console.log(d);
+      // });
+    },
   },
   mounted() {
     this.$events.listen('filter-set', filterText => this.onFilterSet(filterText));
@@ -178,3 +195,7 @@ export default {
   },
 };
 </script>
+
+<style>
+
+</style>§
