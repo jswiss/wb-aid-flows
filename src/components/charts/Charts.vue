@@ -23,7 +23,7 @@
   import Chart6 from './Chart6';
 
   export default {
-    name: 'dashboard',
+    name: 'Charts',
     components: {
       ChartsTabs,
       Chart1,

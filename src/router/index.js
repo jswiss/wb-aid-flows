@@ -3,12 +3,13 @@ import Router from 'vue-router';
 import Vuex from 'vuex';
 import * as d3 from 'd3';
 import Home from '@/components/Home';
+import About from '@/components/about/About';
 import Tables from '@/components/tables/Tables';
 import TestTable from '@/components/tables/TestTable';
 import TestTable2 from '@/components/tables/TestTable2';
 import TestTable3 from '@/components/tables/TestTable3';
 import TestTable4 from '@/components/tables/TestTable4';
-import Dashboard from '@/components/charts/Dashboard';
+import Charts from '@/components/charts/Charts';
 import Chart1 from '@/components/charts/Chart1';
 import Chart2 from '@/components/charts/Chart2';
 import Chart3 from '@/components/charts/Chart3';
@@ -49,9 +50,9 @@ const routes = [
       },
     ],
   }, {
-    path: '/dashboard',
-    name: 'Dashboard',
-    component: Dashboard,
+    path: '/charts',
+    name: 'Charts',
+    component: Charts,
     children: [
       {
         path: 'chart-1',
@@ -79,6 +80,11 @@ const routes = [
         component: Chart6,
       },
     ],
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: About,
   },
 ];
 
