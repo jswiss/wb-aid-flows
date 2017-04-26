@@ -17,6 +17,26 @@
 <script type="text/javascript">
 import * as d3 from 'd3';
 import HomeText from './HomeText';
+import store from '../vuex/store';
+
+const projects = store.state.projects;
+
+// const width = 800;
+// const height = 600;
+
+const nest = d3.nest()
+  .key(d => d.Location)
+  .key(d => d['NDP Pillar'])
+  .key(d => d.SubSector)
+  // eslint-disable-next-line
+  .rollup(d => d3.sum(d, d => d['2015 Project Location Allocation']));
+  // TODO: Maybe add rollups here for various nested values?
+  // But that should be covered anyways, I think??
+
+
+const root = d3.hierarchy({ values: nest.entries(projects) }, d => d.values);
+// eslint-disable-next-line
+console.log(root);
 
 export default {
   name: 'home',
