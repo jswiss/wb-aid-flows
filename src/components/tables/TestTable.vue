@@ -49,9 +49,9 @@ import CustomActions from './CustomActions';
 import DetailRow from './DetailRow';
 import FilterBar from './FilterBar';
 
-const fata = require('./test.csv');
+const projectData = require('../../assets/project-master-csv.csv');
 // eslint-disable-next-line
-console.log(fata);
+console.log(projectData);
 
 Vue.use(VueEvents);
 

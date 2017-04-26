@@ -1,23 +1,28 @@
- <!--home page 
-<template lang="html">
-  <div id="home">
-    Home content will go here
-  </div>
-</template>-->
-
+ <!--home page-->
 <template>
-  <svg width="500" height="270">
-    <g style="transform: translate(0, 10px)">
-      <path :d="line" />
-    </g>
-  </svg>
+  <div>  
+    <div>
+      <home-text></home-text>
+    </div>
+    <div>
+      <svg width="500" height="270">
+        <g style="transform: translate(0, 10px)">
+          <path :d="line" />
+        </g>
+      </svg>
+    </div>
+  </div>
 </template>
 
 <script type="text/javascript">
 import * as d3 from 'd3';
+import HomeText from './HomeText';
 
 export default {
   name: 'home',
+  components: {
+    HomeText,
+  },
   data() {
     return {
       data: [99, 71, 78, 25, 36, 92, 45, 112, 66, 300, 3, 45],
