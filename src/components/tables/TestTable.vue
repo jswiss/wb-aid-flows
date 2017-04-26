@@ -48,10 +48,11 @@ import BulmaPagination from './BulmaPagination';
 import CustomActions from './CustomActions';
 import DetailRow from './DetailRow';
 import FilterBar from './FilterBar';
+import store from '../../vuex/store';
 
-const projectData = require('../../assets/project-master-csv.csv');
+// const projectData = require('../../assets/project-master-csv.csv');
 // eslint-disable-next-line
-console.log(projectData);
+console.table(store.state.donors);
 
 Vue.use(VueEvents);
 
