@@ -1,7 +1,7 @@
  <!--home page-->
 <template>
-  <div class="columns">  
-    <div class="column is-one-quarter">
+  <div class="columns is-gapless">  
+    <div class="column is-3">
       <home-text></home-text>
     </div>
     <div class="column">

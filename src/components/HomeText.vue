@@ -20,6 +20,5 @@
 <style scoped>
   .title {
     display: inline-block;
-    width: 25%;
   }
 </style>
