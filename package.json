@@ -20,9 +20,11 @@
     "d3": "^4.7.4",
     "dsv-file-loader": "^0.1.1",
     "dsv-loader": "^2.0.0",
+    "highcharts": "^5.0.10",
     "moment": "^2.18.1",
     "vue": "^2.2.1",
     "vue-events": "^3.0.1",
+    "vue-highcharts": "0.0.9",
     "vue-router": "^2.2.0",
     "vuetable-2": "^1.3.1",
     "vuex": "^2.2.1"

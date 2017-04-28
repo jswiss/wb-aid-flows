@@ -5,20 +5,20 @@
       <home-text></home-text>
     </div>
     <div class="column">
-      <tree-map-2015></tree-map-2015>
+      <tree-map></tree-map>
     </div>
   </div>
 </template>
 
 <script type="text/javascript">
 import HomeText from './HomeText';
-import TreeMap2015 from './TreeMap2015';
+import TreeMap from './TreeMap';
 
 export default {
   name: 'home',
   components: {
     HomeText,
-    TreeMap2015,
+    TreeMap,
   },
 };
 </script>

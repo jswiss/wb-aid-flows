@@ -1,375 +1,351 @@
- <!--home page-->
-<template>
-  <div>  
-    <p id="chart"></p>
-    <p id="rawdata"></p>
-  </div>
-</template>
-
-<script type='text/javascript'>
-// import * as d3 from 'd3';
+import * as d3 from 'd3';
 import store from '../vuex/store';
 
 const projects = store.state.projects;
 
-const nest = d3.nest()
-  .key(d => d.Location)
-  .key(d => d['NDP Pillar'])
-  .key(d => d.SubSector)
-    // eslint-disable-next-line
-  .rollup(d => d3.sum(d, d => d['2015 Project Location Allocation']))
-  .entries(projects);
+(function loadTree() {
+  const chartWidth = document.getElementById('main-content').getBoundingClientRect().width;
+  const margin = {top: 25, right: 0, bottom: 0, left: 0};
+  const width = chartWidth;
+  const height = 620 - margin.top - margin.bottom;
+  // formatNumber = d3.format(',d'),
+  const formatNumber = d3.format(',');
+  let transitioning;
 
-// eslint-disable-next-line
-console.log(nest);
+  // TODO: Change to WB colour scheme
+  const color = d3.scale.ordinal()
+    .domain(['Benadir', 'FGS', 'Galmudug', 'South West', 'Jubaland', 'Puntland', 'Somaliland', 'Unattributed', 'Hiiraan & Middle Shabelle'])
+    .range(['#546A7E', '#6da8e1', '#e25050', '#ca6dbf', '#65a68c', '#65a68c', '#F2E24D', '#ffc660', '#99d2d0']);
 
-const props = {
-  margin: {
-    type: Object,
-    default: () => ({
-      left: 0,
-      right: 0,
-      top: 10,
-      bottom: 10,
-    }),
-  },
-  ceil: {
-    type: Number,
-    default: 100,
-  },
-};
+  let x = d3.scale.linear()
+    .domain([0, width])
+    .range([0, width]);
 
-export default {
-  name: 'TreeMap2015',
-  props,
-  data() {
-    return {
-      width: 0,
-      height: 0,
+  let y = d3.scale.linear()
+    .domain([0, height])
+    .range([0, height]);
+
+  const firstRun = false;
+
+  const svg = d3.select('#chart').append('svg')
+    .attr('width', width + margin.left + margin.right)
+    .attr('height', height + margin.bottom + margin.top)
+    .style('margin-left', `${-margin.left}px`)
+    .style('margin.right', `${-margin.right}px`)
+    .append('g')
+    .attr('transform', `translate(${margin.left}, ${margin.top})`)
+    .style('shape-rendering', 'crispEdges');
+
+  const tip = d3.select('#chart').append('div')
+    .attr('class', 'tooltip')
+    .style('position', 'absolute')
+    .style('padding', '5px 10px')
+    .style('background', 'white')
+    .style('opacity', 0)
+
+  const grandparent = svg.append('g')
+    .attr('id', 'menuBar')
+    .attr('class', 'grandparent');
+
+  grandparent.append('rect')
+    .attr('y', -margin.top)
+    .attr('width', width)
+    .attr('height', margin.top);
+
+  grandparent.append('text')
+    .attr('x', 6)
+    .attr('y', 6 - margin.top)
+    .attr('dy', '.75em');
+
+  let root = {};
+
+  const treemap = d3.layout.treemap()
+    // .children(function(d, depth) { return depth ? null : d.children; })
+    .children((d, depth) => depth ? null : d.values)
+    // .text((d) { return d.key; })
+    .value(d => d.value)
+    .sort((a, b) => a.value - b.value)
+    .ratio((height / width) * 0.5 * (1 + Math.sqrt(5)))
+    .round(false);
+
+  let button = '2015';
+
+  const data = projects;
+
+  function loadData() {
+    console.log(data);
+    root = {
+      key: '2015',
+      values: d3.nest()
+        .key(d => d.Location)
+        .key(d => d['NDP Pillar'])
+        .key(d => d.SubSector)
+        .key(d => d['Project title'])
+        .rollup(d => d3.sum(d, d => d['2015 Project Location Allocation']))
+        .entries(data),
     };
-  },
-  mounted() {
-    this.treemap();
-  },
-  beforeCreate() {
-    // this.reSortRoot(root, '2015 Project Location Allocation');
-  },
-  beforeDestroy() {
-    window.removeEventListener('resize', this.onResize);
-  },
-  methods: {
-    // onResize() {
-    //   this.width = this.$el.offsetWidth;
-    //   this.height = this.$el.offsetHeight;
-    // },
-    treemap() {
-      let root = {};
-      root.key = 'Data';
-      root.values = nest;
 
-      function reSortRoot(root, value_key) {
-		    console.log("Calling");
-        for (var key in root) {
-          if (key == "key") {
-            root.name = root.key;
-            delete root.key;
-          }
-          if (key == "values") {
-            root.children = [];
-            for (var i in root.values) {
-              root.children.push(reSortRoot(root.values[i],value_key));
-            }
-            delete root.values;
-          }
-          if (key == value_key) {
-            root.value = parseFloat(root[value_key]);
-            delete root[value_key];
-          }
-        }
-        return root;
-      }
-
-      reSortRoot(root, '2015 Project Location Allocation');
-      console.log(root);
-      // create treemap boundaries and formatting
-      const margin = {top: 20, right: 0, bottom: 0, left: 0};
-      let width = 900;
-      let height = 700 - margin.top - margin.bottom;
-      const formatNumber = d3.format(".2s");
-      let transitioning;
-
-      $("#rawdata").html(JSON.stringify(root));
-
-      // Create x and y scales
-      const x = d3.scale.linear()
-        .domain([0, width])
-        .range([0, width]);
-
-      const y = d3.scale.linear()
-        .domain([0, height])
-        .range([0, height]);
-
-      // set treemap stuff here, children, sort, ratio
-      const treemap = d3.layout.treemap()
-        .children(function(d, depth) { return depth ? null : d.children; })
-        .sort(function(a, b) { return a.value - b.value; })
-        .ratio(height / width * 0.5 * (1 + Math.sqrt(5)))
-        .round(false);
-      
-      // create SVG
-      const svg = d3
-        .select('#chart')
-        .append('svg')
-        .attr('width', width + margin.left + margin.right)
-        .attr('height', height + margin.top + margin.bottom)
-        .style('margin-left', `${-margin.left}px`)
-        .style('margin-right', `${-margin.right}px`)
-        .append('g')
-        .attr('transform', "translate(" + margin.left + "," + margin.top + ")")
-        .style('shape-rendering', 'crispEdges');
-
-      const color = d3.scale.category20c();
-
-      const grandparent = svg
-        .append('g')
-        .attr('class', 'grandparent');
-
-      grandparent
-        .append('rect')
-        .attr('y', -margin.top)
-        .attr('width', width)
-        .attr('height', margin.top);
-      
-      grandparent
-        .append('text')
-        .attr('x', 6)
-        .attr('y', 6 - margin.top)
-        .attr('dy', '.75em');
-
-        function initialize(root) {
-          root.x = root.y =0;
-          root.dx = width;
-          root.dy = height;
-          root.depth = 0;
-        }
-
-        // Aggregate the values for internal nodes. This is normally done by the
-        // treemap layout, but not here because of the custom implementation.
-        function accumulate(d) {
-          return d.children
-          ? d.value = d.children.reduce(function(p, v) { return p + accumulate(v); }, 0)
-          : d.value;
-        }
-
-        // Compute the treemap layout recursively such that each group of siblings
-        // uses the same size (1×1) rather than the dimensions of the parent cell.
-        // This optimizes the layout for the current zoom state. Note that a wrapper
-        // object is created for the parent node for each group of siblings so that
-        // the parent’s dimensions are not discarded as we recurse. Since each group
-        // of sibling was laid out in 1×1, we must rescale to fit using absolute
-        // coordinates. This lets us use a viewport to zoom.
-        function layout(d) {
-          if (d.children) {
-            treemap.nodes({children: d.children});
-            d.children.forEach(function(c) {
-              c.x = d.x + c.x * d.dx;
-              c.y = d.y + c.y * d.dy;
-              c.dx *= d.dx;
-              c.dy *= d.dy;
-              c.parent = d;
-              layout(c);
-            });
-          }
-        }
-
-        /* display shows the treemap and writes the embedded transition function */
-        function display(d) {
-          // create GRANDPARENT BAR at the top
-          grandparent
-            .datum(d.parent)
-            .on('click', transition)
-            .select('text')
-            .text(name(d));
-
-         const g1 = svg.insert('g', 'grandparent')
-          .datum(d)
-          .attr('class', 'depth');
-          
-        // add in data
-        let g = g1.selectAll('g')
-          .data(d.children)
-          .enter()
-          .append('g');
-        
-        // transition on a child click
-        g.filter(d => d.children)
-          .classed('children', true)
-          .on('click', transition);
-
-        // write children rectangles
-        g.selectAll('.child')
-          .data(d => d.children || [d])
-          .enter()
-          .append('rect')
-          .attr('class', 'child')
-          .call(rect)
-          .append('title')
-          .text(d => `${d.name}, ${formatNumber(d.value)}`);
-
-        // Adding a foreign object instead of a text object, allows for text wrap
-        g.append('foreignObject')
-          .call(rect)
-          // open new window based on the json's URL value for leaf nodes
-          // Firefox displays this on top
-          .on('click', (d) => { 
-            if(!d.children) {
-              window.open(`localhost:8080/project/${d.key}`);
-            }
-          })
-          .attr('class', 'foreignObject')
-          .append('xhtml:div')
-          .attr('dy', '.75em')
-          .html((d) => {
-            if (d.value) {
-              return `${d.name} + (${formatNumber(d.value)})`;
-            }
-            return d.name;
-          })
-          .attr('class', 'textdiv'); //textdiv allows styling of text with css
-          // create transition function for transitions
-          function transition(d) {
-            if (transitioning || !d) return;
-            let transitioning = true;
-            const g2 = display(d);
-            const t1 = g1.transition().duration(750); //transition duration in ms
-            const t2 = g2.transition().duration(750);
-
-            // update the domain only after entering new elements
-            x.domain([d.x, d.x + d.dx]);
-            y.domain([d.y, d.y + d.dy]);
-
-            // Enable anti-aliasing during the transition
-            svg.style('shape-rendering', null);
-
-            // Draw child nodes on top of parent nodes
-            svg.selectAll('.depth').sort((a, b) => { return a.depth -b.depth });
-            //Fade-in entering text
-            g2.selectAll('text').style('fill-opacity', 0);
-            g2.selectAll('foreignObject div')
-              .style('display', 'none');
-
-            // Transition to the new view
-            // Transition to the new view.
-            t1.selectAll('text').call(text).style('fill-opacity', 0);
-            t2.selectAll('text').call(text).style('fill-opacity', 1);
-            t1.selectAll('rect').call(rect);
-            t2.selectAll('rect').call(rect);
-
-            t1.selectAll('.textdiv').style('display', 'none'); /* added */
-            t1.selectAll('.foreignobj').call(foreign); /* added */
-            t2.selectAll('.textdiv').style('display', 'block'); /* added */
-            t2.selectAll('.foreignobj').call(foreign); /* added */ 
-
-            // Remove the old node when the transition is finished.
-            t1.remove().each('end', function() {
-              svg.style('shape-rendering', 'crispEdges');
-              transitioning = false;
-            });
-          } // end transition function
-
-          return g;
-        } // end display function
-
-        function text(text) {
-          text.attr('x', d => x(d.x) - 6)
-            .attr('y', d => y(d.y) - 6);
-        }
-
-        function rect(rect) {
-          rect.attr('x', d => x(d.x))
-            .attr('y', d => y(d.y))
-            .attr('width', d => x(d.x + d.dx) - x(d.x))
-            .attr('height', d => y(d.y + d.dy) - y(d.y))
-            .style('background', (d) => { return d.parent ? color(d.value) : null; });
-        }
-
-        function foreign(foreign) {
-          foreign.attr('x', d => x(d.x))
-            .attr('y', d => y(d.y))
-            .attr('width', d => x(d.x + d.dx) - x(d.x))
-            .attr('height', d => y(d.y + d.dy) - y(d.y));
-        }
-
-        function name(d) {
-          return d.parent ? `${name(d.parent)}.${d.name}` : d.name;
-        }
-        function loadData(root) {
+    d3.selectAll('input').on('click', function change() {
+      // console.log('func: change');
+      const g = d3.selectAll('.depth').remove();
+      console.log(g);
+      switch (this.value) {
+        case '2016':
+        //console.log('donor');
+          root = {
+            key: '2016', 
+            values: d3.nest()
+              .key(d => d.Location)
+              .key(d => d['NDP Pillar'])
+              .key(d => d.SubSector)
+              .key(d => d['Project title'])
+              .rollup(d => d3.sum(d, d => d['2016 Project Location Allocation']))
+              .entries(data)
+        };
+          button='2016';
+          initialize(root);
+          accumulate(root);
+          layout(root);
+          display(root);
+          break;
+        case '2017':
+        //console.log('donor');
+        root = {'key':'2017', 'values':d3.nest()
+          .key(d => d.Location)
+          .key(d => d['NDP Pillar'])
+          .key(d => d.SubSector)
+          .key(d => d['Project title'])
+          .rollup(d => d3.sum(d, d => d['2017 Project Location Allocation']))
+          .entries(data)
+        };
+        button='2017';
+          initialize(root);
+          accumulate(root);
+          layout(root);
+          display(root);
+          break;
+        default '2015':
+        //console.log('party');
+        root = {'key':'2015', 'values':d3.nest()
+          .key(d => d.Location)
+          .key(d => d['NDP Pillar'])
+          .key(d => d.SubSector)
+          .key(d => d['Project title'])
+          .rollup(d => d3.sum(d, d => d['2015 Project Location Allocation']))
+          .entries(data)
+        };
+          button = '2015';
           initialize(root);
           accumulate(root);
           layout(root);
           display(root);
         }
-        loadData(root);
-    },
-    
-  },
-};
-</script>
+    });
 
-<style scoped>
-  #chart {
-    width: 820px;
-    height: 700px;
-    background: #bbb;
-    margin: 1px auto;
-    position: relative;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
+    console.log('root', root);
+    initialize(root);
+    accumulate(root);
+    layout(root);
+    display(root);
+
+    function initialize(root) {
+      root.x = root.y = 0;
+      root.dx = width;
+      root.dy = height;
+      root.depth = 0;
     }
 
-    text {
-      pointer-events: none;
+    // Aggregate the values for internal nodes. This is normally done by the
+    // treemap layout, but not here because of our custom implementation.
+    function accumulate(d) {
+    //console.log(d.children);
+    return d.values
+      ? d.value = Array.prototype.reduce.call(d.values, function(p, v) { return p + accumulate(v); }, 0)
+      // d.values.reduce(function * (p, v) { return p + accumulate(v); }, 0)
+      : +d.value;
     }
 
-    .grandparent text { /* header text */
-      font-weight: bold;
-      font-size: medium;
-      font-family: "Open Sans", Helvetica, Arial, sans-serif; 
-    }
 
-    rect {
-    fill: none;
-    stroke: #fff;
-    background: #fff;
-    }
-
-    rect.parent,
-      .grandparent rect {
-        stroke-width: 2px;
+    // Compute the treemap layout recursively such that each group of siblings
+    // uses the same size (1×1) rather than the dimensions of the parent cell.
+    // This optimizes the layout for the current zoom state. Note that a wrapper
+    // object is created for the parent node for each group of siblings so that
+    // the parent’s dimensions are not discarded as we recurse. Since each group
+    // of sibling was laid out in 1×1, we must rescale to fit using absolute
+    // coordinates. This lets us use a viewport to zoom.
+    function layout(d) {
+      if (d.values) {
+        treemap.nodes({values: d.values});
+        Array.prototype.forEach.call(d.values, function(c) {
+          c.x = d.x + c.x * d.dx;
+          c.y = d.y + c.y * d.dy;
+          c.dx *= d.dx;
+          c.dy *= d.dy;
+          c.parent = d;
+          layout(c);
+        });
+        // d.values.forEach(function(c) {
+        // });
       }
-
-    .grandparent rect {
-    fill: #fff;
     }
 
-    .children rect.parent,
-      .grandparent rect {
-    cursor: pointer;
+    function display(d) {
+    grandparent
+      .datum(d.parent)
+      .on('click', transition)
+      .select('text')
+      .text(boxNames(d,'long'));
+
+    var g1 = svg.insert('g', '.grandparent')
+      .datum(d)
+      .attr('class', 'depth');
+
+    var g = g1.selectAll('g')
+      .data(d.values)
+      .enter().append('g')
+
+    g.filter(function(d) { return d.values; })
+      .classed('children', true)
+      .on('click', transition);
+
+    g.selectAll('.child')
+      .data(function(d) { return d.values || [d]; })
+      .enter().append('rect')
+      .attr('class', 'child')
+      .call(rect);
+
+    g.append('rect')
+      .attr('class', 'parent')
+      .on('mousemove', function(d){return toolTip(d)})
+      .on('mouseout', function(d){return toolTipOff(d)})
+
+        .call(rect);
+      // .append('title')
+      //   .text(function(d) { return formatNumber(+d.value); });
+
+    g.append('text')
+      .attr('dy', '.75em')
+      .text(function(d) { return boxNames(d,'short');})
+      .style('opacity', function(d) { d.w = this.getComputedTextLength(); return d.dx > d.w*.42 ? 1 : 0; })
+      .call(text);
+
+    function transition(d) {
+      if (transitioning || !d) return;
+      transitioning = true;
+
+      var g2 = display(d),
+          t1 = g1.transition().duration(750),
+          t2 = g2.transition().duration(750);
+
+      // Update the domain only after entering new elements.
+      x.domain([d.x, d.x + d.dx]);
+      y.domain([d.y, d.y + d.dy]);
+
+      // Enable anti-aliasing during the transition.
+      svg.style('shape-rendering', null);
+
+      // Draw child nodes on top of parent nodes.
+      svg.selectAll('.depth').sort(function(a, b) { return a.depth - b.depth; });
+
+      // Fade-in entering text.
+      g2.selectAll('text').style('fill-opacity', 0);
+
+      // Transition to the new view.
+      t1.selectAll('text').call(text).style('fill-opacity', 0);
+      t2.selectAll('text').call(text).style('fill-opacity', 1);
+      t1.selectAll('rect').call(rect);
+      t2.selectAll('rect').call(rect);
+
+      // Remove the old node when the transition is finished.
+      t1.remove().each('end', function() {
+        svg.style('shape-rendering', 'crispEdges');
+        transitioning = false;
+      });
+    }
+    return g;
+    }
+
+    function text(text) {
+    console.log(text.node().getBoundingClientRect().width);
+    text.attr('x', function(d) { return x(d.x) + 6; })
+      .attr('y', function(d) { return y(d.y) + 6; });
+    }
+
+    function rect(rect) {
+    rect.attr('x', function(d) { return x(d.x); })
+      .attr('y', function(d) { return y(d.y); })
+      .attr('width', function(d) { return x(d.x + d.dx) - x(d.x); })
+      .attr('height', function(d) { return y(d.y + d.dy) - y(d.y); })
+      .style('fill', function(d) {return (color(findProperty(d, 'Location')))});
+    }
+
+    function findProperty(d, propertyName) {
+      if (button=='2015'){
+        if (d[propertyName])  {
+          console.log('button= ',button);
+          console.log(d[propertyName]);
+          return d[propertyName];
+        }; 
+        if (d.values) {
+          return findProperty(d.values[0], propertyName);
+        }
+        return `error: couldnt find  ${propertyName}`;
       }
-
-    rect.parent {
-      pointer-events: all; 
-    }
-
-    .children:hover rect.child,
-      .grandparent:hover rect {
-    fill: #aaa;
+      if (button=='2016') {
+        if (d[propertyName])  {
+          console.log(d[propertyName]);
+          return d[propertyName];
+        }; 
+        if (d.values) {
+          try {
+            if (d.parent.parent.key=='2015' && d.values.length>1){
+              console.log(d);
+          console.log(d[propertyName]);
+              return 'Grey';
+            }
+            else {return findProperty(d.values[0], propertyName)}
+            return `error: couldnt find  ${propertyName}`;
+          }
+          catch (err) {}
+        }    
       }
-
-    .textdiv { /* text in the boxes */
-      font-size: x-small;
-    padding: 5px;
-      font-family: "Open Sans", Helvetica, Arial, sans-serif; 
     }
-</style>
+
+    function toolTip(d) {
+      let xPosition = d3.event.pageX + 5;
+      let yPosition = d3.event.pageY + 5;
+      if (xPosition>width/2) {
+        xPosition=xPosition-tip.style('width').replace('px', '')-5;
+      }
+      if (yPosition>height){
+        yPosition=yPosition-tip.style('height').replace('px', '')-10;
+      }
+      if(d.key) {
+        tip.style('opacity',.9)
+        .html('<b>'+d.key+ '</b> </br>Total £'+formatNumber(+d.value.toFixed(2)))
+        .style('left', xPosition + 'px')
+        .style('top', yPosition + 'px');
+      }
+      else {
+        tip.style('opacity',.9)
+        .html('<b>£'+formatNumber(+d.value.toFixed(2))+'</b> to '+d.entity_name+'</br><b>Donated on </b>'+d.received_date+'</br><b>Donated type </b>'+d.type_of_donation+' '+d.nature_provision+'</br><b>Reported on </b>'+d.reported_date+'</br><b>Reference </b>'+d.ec_reference+'</br><b>Made via </b>'+d.made_via)
+        .style('left', xPosition + 'px')
+        .style('top', yPosition + 'px');
+      }
+    }
+
+    function toolTipOff(d) {
+      tip.style('opacity',0);
+    }
+
+    function boxNames(d, length) {
+      //console.log(d);
+      // return d.key;
+      if (length == 'long') return boxNames(d.parent) + ' > ' + d.key;
+      if (length == 'short') return d.key;
+
+      return d.parent ? boxNames(d.parent) + ' > ' + d.key : d.key;
+    }
+  };
+  loadData();
+})();
