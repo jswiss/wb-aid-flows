@@ -26,7 +26,6 @@
           <td>{{item['2018, USD'] | currency}}</td>
           <td>{{item['2019, USD'] | currency}}</td>
           <td>{{item['Total, 2015-19'] | currency}}</td>
-
         </tr>
       </tbody>
     </table>
@@ -37,7 +36,6 @@ import accounting from 'accounting';
 import store from '../../vuex/store';
 
 const donors = store.state.donors;
-console.log(donors);
 
 export default {
   name: 'DonorTable',
@@ -47,9 +45,7 @@ export default {
     };
   },
   computed: {
-    formatNumber: function() {
-      return accounting.formatNumber(value, 0);
-    },
+
   },
   methods: {
     
@@ -57,6 +53,9 @@ export default {
 };
 </script>
 
-<style>
-
+<style scoped>
+  .container {
+    position: relative;
+    overflow: auto;
+  }
 </style>

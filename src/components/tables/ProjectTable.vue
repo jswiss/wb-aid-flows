@@ -17,19 +17,21 @@
         ></vuetable-pagination-info>
       </div>
     </nav>
-    <vuetable ref="vuetable"
-      api-url="http://vuetable.ratiw.net/api/users"
-      :fields="fields"
-      :css="css"
-      pagination-path=""
-      :multi-sort="true"
-      multi-sort-key="ctrl"
-      :sort-order="sortOrder"
-      detail-row-component="my-detail-row"
-      :append-params="moreParams"
-      @vuetable:cell-clicked="onCellClicked"
-      @vuetable:pagination-data="onPaginationData"
-    ></vuetable>
+    <div class="scrollable">
+      <vuetable ref="vuetable"
+        api-url="http://vuetable.ratiw.net/api/users"
+        :fields="fields"
+        :css="css"
+        pagination-path=""
+        :multi-sort="true"
+        multi-sort-key="ctrl"
+        :sort-order="sortOrder"
+        detail-row-component="my-detail-row"
+        :append-params="moreParams"
+        @vuetable:cell-clicked="onCellClicked"
+        @vuetable:pagination-data="onPaginationData"
+      ></vuetable>
+    </div>
     <bulma-pagination ref="pagination"
       @vuetable-pagination:change-page="onChangePage"
     ></bulma-pagination>
@@ -51,7 +53,7 @@ import store from '../../vuex/store';
 
 const projects = store.state.projectTable;
 
-console.log(projects);
+// console.log(projects);
 
 Vue.use(VueEvents);
 
@@ -107,15 +109,17 @@ export default {
         },
         {
           name: 'Start Date',
-          sortField: 'birthdate',
+          sortField: 'StartDate',
           titleClass: 'has-text-centered',
           dataClass: 'has-text-centered',
-          callback: 'formatDate|DD-MM-YYYY',
+          callback: 'formatDate|MMM-YYYY',
         },
         {
           name: 'End Date',
-          sortField: 'nickname',
-          callback: 'allcap',
+          sortField: 'EndDate',
+          titleClass: 'has-text-centered',
+          dataClass: 'has-text-centered',
+          callback: 'formatDate|MMM-YYYY',
         },
         {
           name: 'NDP Pillar',
@@ -133,55 +137,46 @@ export default {
         },
         {
           name: 'Other Sectors',
-          title: 'Actions',
           titleClass: 'has-text-centered',
           dataClass: 'has-text-centered',
         },
         {
           name: 'Reporting Agency',
-          title: 'Actions',
           titleClass: 'has-text-centered',
           dataClass: 'has-text-centered',
         },
         {
           name: 'Funders',
-          title: 'Actions',
           titleClass: 'has-text-centered',
           dataClass: 'has-text-centered',
         },
         {
           name: 'Implementers',
-          title: 'Actions',
           titleClass: 'has-text-centered',
           dataClass: 'has-text-centered',
         },
         {
           name: 'Implementer Category',
-          title: 'Actions',
           titleClass: 'has-text-centered',
           dataClass: 'has-text-centered',
         },
         {
           name: 'Project Website',
-          title: 'Actions',
           titleClass: 'has-text-centered',
           dataClass: 'has-text-centered',
         },
         {
           name: 'Gender',
-          title: 'Actions',
           titleClass: 'has-text-centered',
           dataClass: 'has-text-centered',
         },
         {
           name: 'Capacity Building',
-          title: 'Actions',
           titleClass: 'has-text-centered',
           dataClass: 'has-text-centered',
         },
         {
           name: 'Stabilisation',
-          title: 'Actions',
           titleClass: 'has-text-centered',
           dataClass: 'has-text-centered',
         },
@@ -249,6 +244,9 @@ export default {
 };
 </script>
 
-<style>
-
+<style scoped>
+  .scrollable {
+    position: relative;
+    overflow: auto;
+  }
 </style>§

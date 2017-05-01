@@ -14,6 +14,7 @@ import Chart3 from '@/components/charts/Chart3';
 import Chart4 from '@/components/charts/Chart4';
 import Chart5 from '@/components/charts/Chart5';
 import Chart6 from '@/components/charts/Chart6';
+import Project from '@/components/projects/Project';
 
 Vue.use(Router);
 Vue.use(Vuex);
@@ -75,6 +76,10 @@ const routes = [
     path: '/about',
     name: 'About',
     component: About,
+  }, {
+    path: '/projects/:projectName',
+    name: 'project',
+    component: Project,
   },
 ];
 
