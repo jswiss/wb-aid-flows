@@ -73,7 +73,8 @@ tree2015 = [{
               children: subsector.values.map(project => {
                 return {
                   name: project.key,
-                  value: project.values
+                  value: project.values,
+                  url: `http://localhost:8080/projects/${project.key}`,
                 }
               })
             }
@@ -98,7 +99,8 @@ tree2016 = [{
               children: subsector.values.map(project => {
                 return {
                   name: project.key,
-                  value: project.values
+                  value: project.values,
+                  url: `http://localhost:8080/projects/${project.key}`,
                 }
               })
             }
@@ -108,6 +110,8 @@ tree2016 = [{
     }
   })
 }];
+
+console.log(tree2016);
 
 tree2017 = [{
   name: 2017,
@@ -123,7 +127,8 @@ tree2017 = [{
               children: subsector.values.map(project => {
                 return {
                   name: project.key,
-                  value: project.values
+                  value: project.values,
+                  url: `http://localhost:8080/projects/${project.key}`,
                 }
               })
             }
@@ -170,6 +175,14 @@ export default {
           chart.tooltip().titleFormat("{%name}");
           chart.tooltip().format("${%Value}{groupsSeparator:\\,}");
           chart.hintOpacity(0.7);
+
+          chart.listen("pointClick", (e) => { 
+            console.log(e.point.get('name'))
+            const new_value = e.point.get('url');
+            if (new_value) {
+              window.open(new_value,"_blank"); 
+            }
+          });
 
           chart.maxDepth(1);
           chart.colorRange(true);

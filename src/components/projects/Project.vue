@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="container">
-
+    {{ project['Project title'] }}
   </div>
 </template>
 
