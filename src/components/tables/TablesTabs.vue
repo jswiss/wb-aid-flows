@@ -4,23 +4,13 @@
     <div class="tabs is-centered">
       <ul>
         <li class="is-active">
-          <router-link class="nav-item is-tab" to="/tables/test-table">
-            Table 1
+          <router-link class="nav-item is-tab" to="/tables/projects">
+            Projects
           </router-link>
         </li>
         <li>
-          <router-link class="nav-item is-tab" to="/tables/test-table2">
-            Table 2
-          </router-link>
-        </li>
-        <li>
-          <router-link class="nav-item is-tab" to="/tables/test-table3">
-            Table 3
-          </router-link>
-        </li>
-        <li>
-          <router-link class="nav-item is-tab" to="/tables/test-table4">
-            Table 4
+          <router-link class="nav-item is-tab" to="/tables/donors">
+            Donors
           </router-link>
         </li>
       </ul>

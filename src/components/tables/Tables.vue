@@ -2,27 +2,22 @@
 <template lang="html">
   <div id="tables" class="container is-fluid">
     <tables-tabs></tables-tabs>
-    <vuetable v-if="['TestTable'].indexOf($route.name) > -1"></vuetable>
-    <test-table2 v-if="['TestTable2'].indexOf($route.name) > -1"></test-table2>
-    <test-table3 v-if="['TestTable3'].indexOf($route.name) > -1"></test-table3>
-    <test-table4 v-if="['TestTable4'].indexOf($route.name) > -1"></test-table4>
+    <project-table v-if="['ProjectTable'].indexOf($route.name) > -1"></project-table>
+    <donor-table v-if="['DonorTable'].indexOf($route.name) > -1"></donor-table>
   </div>
 </template>
 <script type="text/javascript">
 import TablesTabs from './TablesTabs';
-import Vuetable from './TestTable';
-import TestTable2 from './TestTable2';
-import TestTable3 from './TestTable3';
-import TestTable4 from './TestTable4';
+import ProjectTable from './ProjectTable';
+import DonorTable from './DonorTable';
+
 
 export default {
   name: 'tables',
   components: {
     TablesTabs,
-    Vuetable,
-    TestTable2,
-    TestTable3,
-    TestTable4,
+    ProjectTable,
+    DonorTable,
   },
 };
 </script>

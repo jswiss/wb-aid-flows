@@ -7,7 +7,7 @@
       <router-link class="nav-item is-tab" to="/charts">
         <i class="fa fa-dashboard"></i>Charts
       </router-link>
-      <router-link class="nav-item is-tab" to="/tables/test-table">
+      <router-link class="nav-item is-tab" to="/tables/projects">
         <i class="fa fa-list-alt"></i>Tables
       </router-link>
       <router-link class="nav-item is-tab" to="/about">

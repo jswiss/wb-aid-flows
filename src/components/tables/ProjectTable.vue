@@ -55,7 +55,7 @@ Vue.component('custom-actions', CustomActions);
 Vue.component('my-detail-row', DetailRow);
 
 export default {
-  name: 'TestTable',
+  name: 'ProjectTable',
   components: {
     Vuetable,
     BulmaPagination,

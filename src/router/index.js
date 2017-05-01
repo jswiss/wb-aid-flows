@@ -5,10 +5,8 @@ import * as d3 from 'd3';
 import Home from '@/components/Home';
 import About from '@/components/about/About';
 import Tables from '@/components/tables/Tables';
-import TestTable from '@/components/tables/TestTable';
-import TestTable2 from '@/components/tables/TestTable2';
-import TestTable3 from '@/components/tables/TestTable3';
-import TestTable4 from '@/components/tables/TestTable4';
+import ProjectTable from '@/components/tables/ProjectTable';
+import DonorTable from '@/components/tables/DonorTable';
 import Charts from '@/components/charts/Charts';
 import Chart1 from '@/components/charts/Chart1';
 import Chart2 from '@/components/charts/Chart2';
@@ -32,21 +30,13 @@ const routes = [
     component: Tables,
     children: [
       {
-        path: 'test-table',
-        name: 'TestTable',
-        component: TestTable,
+        path: 'projects',
+        name: 'ProjectTable',
+        component: ProjectTable,
       }, {
-        path: 'test-table2',
-        name: 'TestTable2',
-        component: TestTable2,
-      }, {
-        path: 'test-table3',
-        name: 'TestTable3',
-        component: TestTable3,
-      }, {
-        path: 'test-table4',
-        name: 'TestTable4',
-        component: TestTable4,
+        path: 'donors',
+        name: 'DonorTable',
+        component: DonorTable,
       },
     ],
   }, {
