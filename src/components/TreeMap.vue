@@ -1,7 +1,18 @@
  <!--home page-->
 <template>
-  <div>
-    <div id="container" style="width: 1000px; height: 600px;"></div>
+  <div id="treemap-=content">
+    <div class="field columns">
+      <label class="radio column is-2">
+        <input class="is-medium" type="radio" name="mode" value="2015" checked>  2015
+      </label>
+      <label class="radio column is-2">
+        <input class="is-medium" type="radio" name="mode" value="2016">  2016
+      </label>
+      <label class="radio column is-2">
+        <input class="is-medium" type="radio" name="mode" value="2017">  2017
+      </label>
+    </div>
+    <div id="container" style="width: 100%; height: 650px;"></div>
   </div>
 </template>
 
@@ -41,6 +52,7 @@ let tree2017 = {
   .rollup(d => d3.sum(d, d => d['2017 Project Location Allocation']))
   .entries(projects),
 }
+
 
 tree2015 = [{
   name: 2015,
@@ -138,12 +150,12 @@ export default {
 
         const chart = anychart.treeMap(data);
         chart.headers().format("{%name}");
+        chart.headers().format("Project allocation: ${%value}{groupsSeparator:\\,}");
         chart.labels().format("{%name}");
         chart.tooltip().titleFormat("{%name}");
-        chart.tooltip().format("{%name}");
-        chart.headers().format("Project allocation: {%value}");
+        chart.tooltip().format("${%value}{groupsSeparator:\\,}");
+        chart.hintOpacity(0.7);
 
-        chart.title("Setting the data as a tree");
         chart.maxDepth(1);
         chart.container('container');
         chart.draw();
@@ -153,5 +165,21 @@ export default {
 </script>
 
 <style scoped>
-
+  .buttons {
+    float:left;
+    margin-top: 8px;
+    margin-bottom: 4px;
+    color: #6A6D68;
+    font-family: "BentonSans";
+    font-size: 14px;
+    line-height: 21px;
+  }
+  .columns {
+    margin-bottom: 0px;
+    padding-left: 10px;
+  }
+  label {
+    font-size: 18px;
+    text-indent: 20px;
+  }
 </style>
