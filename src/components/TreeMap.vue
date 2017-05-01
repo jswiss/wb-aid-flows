@@ -149,39 +149,41 @@ export default {
   methods: {
     treeMap() {
         const years = document.querySelectorAll('input');
-        const year = years.forEach(year => year.addEventListener('click', e => e.target.value));
         const colorScheme = ['#45B9EA', '#262261', '#716558', '#594A41', '#594A41'];
         const colorShades = ['#45B9EA', '#3ea6d2', '#3794bb', '#3081a3', '#296f8c', '#225c75'];
         const colorRange = ['#262261', '#45B9EA'];
-        // add Event Listener here to detect if 2015, 2016, 2017 
-        // buttons pressed, and add correct data as necessary
+        const year2015 = anychart.data.tree(tree2015, anychart.enums.TreeFillingMethod.AS_TREE);
+        const year2016 = anychart.data.tree(tree2016, anychart.enums.TreeFillingMethod.AS_TREE);
+        const year2017 = anychart.data.tree(tree2017, anychart.enums.TreeFillingMethod.AS_TREE);
+        const year = years.forEach(year => year.addEventListener('click', e => {
+          let selectedYear = e.target.value;
 
-        let year2015 = anychart.data.tree(tree2015, anychart.enums.TreeFillingMethod.AS_TREE);
-        let year2016 = anychart.data.tree(tree2016, anychart.enums.TreeFillingMethod.AS_TREE);
-        let year2017 = anychart.data.tree(tree2017, anychart.enums.TreeFillingMethod.AS_TREE);
+          // set it so a click adds the class 'selected'. 
+          // if it has 'selected' class, pass variable to chart function
 
-        const chart = anychart.treeMap(year2015);
-        chart.headers().format("{%name} :: Project allocation: ${%value}{groupsSeparator:\\,}");
-        chart.headers().fontWeight('bold');
-        chart.labels().format("{%name}");
-        chart.labels().fontSize(12);
-        chart.labels().fontWeight(900);
-        chart.tooltip().titleFormat("{%name}");
-        chart.tooltip().format("${%Value}{groupsSeparator:\\,}");
-        chart.hintOpacity(0.7);
+          const chart = anychart.treeMap(year2015);
+          chart.headers().format("{%name} :: Project allocation: ${%value}{groupsSeparator:\\,}");
+          chart.headers().fontWeight('bold');
+          chart.labels().format("{%name}");
+          chart.labels().fontSize(12);
+          chart.labels().fontWeight(900);
+          chart.tooltip().titleFormat("{%name}");
+          chart.tooltip().format("${%Value}{groupsSeparator:\\,}");
+          chart.hintOpacity(0.7);
 
-        chart.maxDepth(1);
-        chart.colorRange(true);
-        chart.colorScale(anychart.scales.ordinalColor([
-          {less: 500000, color: colorShades[0]},
-          {from: 500000, to:1000000, color: colorShades[1]},
-          {from: 1000000, to:5000000, color: colorShades[2]},
-          {from: 5000000, to:10000000, color: colorShades[3]},
-          {from: 10000000, to:20000000, color: colorShades[4]},
-          {greater: 20000000, color: colorShades[5]},
-        ]))
-        chart.container('container');
-        chart.draw();
+          chart.maxDepth(1);
+          chart.colorRange(true);
+          chart.colorScale(anychart.scales.ordinalColor([
+            {less: 500000, color: colorShades[0]},
+            {from: 500000, to:1000000, color: colorShades[1]},
+            {from: 1000000, to:5000000, color: colorShades[2]},
+            {from: 5000000, to:10000000, color: colorShades[3]},
+            {from: 10000000, to:20000000, color: colorShades[4]},
+            {greater: 20000000, color: colorShades[5]},
+          ]));
+          chart.container('container');
+          chart.draw();
+        }));
     },
   },
 };

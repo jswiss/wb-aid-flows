@@ -45,13 +45,16 @@ import VueEvents from 'vue-events';
 import Vuetable from 'vuetable-2/src/components/Vuetable';
 import VuetablePaginationInfo from 'vuetable-2/src/components/VuetablePaginationInfo';
 import BulmaPagination from './BulmaPagination';
-import CustomActions from './CustomActions';
 import DetailRow from './DetailRow';
 import FilterBar from './FilterBar';
+import store from '../../vuex/store';
+
+const projects = store.state.projectTable;
+
+console.log(projects);
 
 Vue.use(VueEvents);
 
-Vue.component('custom-actions', CustomActions);
 Vue.component('my-detail-row', DetailRow);
 
 export default {
@@ -72,53 +75,112 @@ export default {
       },
       fields: [
         {
-          name: '__checkbox',
-          title: '#',
-          titleClass: 'has-text-centered',
-          dataClass: 'has-text-centered',
+          name: 'Project Title',
+          sortField: 'projectTitle',
         },
         {
-          name: 'name',
-          sortField: 'name',
+          name: 'Description',
         },
         {
-          name: 'email',
-          sortField: 'email',
-        },
-        {
-          name: 'age',
+          name: 'Project Value',
           sortField: 'birthdate',
           titleClass: 'has-text-centered',
           dataClass: 'has-text-centered',
         },
         {
-          name: 'birthdate',
+          name: '2015 Disbursement',
+          sortField: 'birthdate',
+          titleClass: 'has-text-centered',
+          dataClass: 'has-text-centered',
+        },
+        {
+          name: '2016 Disbursement',
+          sortField: 'birthdate',
+          titleClass: 'has-text-centered',
+          dataClass: 'has-text-centered',
+        },
+        {
+          name: '2017 Disbursement',
+          sortField: 'birthdate',
+          titleClass: 'has-text-centered',
+          dataClass: 'has-text-centered',
+        },
+        {
+          name: 'Start Date',
           sortField: 'birthdate',
           titleClass: 'has-text-centered',
           dataClass: 'has-text-centered',
           callback: 'formatDate|DD-MM-YYYY',
         },
         {
-          name: 'nickname',
+          name: 'End Date',
           sortField: 'nickname',
           callback: 'allcap',
         },
         {
-          name: 'gender',
+          name: 'NDP Pillar',
           sortField: 'gender',
           titleClass: 'has-text-centered',
           dataClass: 'has-text-centered',
           callback: 'genderLabel',
         },
         {
-          name: 'salary',
+          name: 'Primary Sector',
           sortField: 'salary',
           titleClass: 'has-text-centered',
           dataClass: 'has-text-right',
           callback: 'formatNumber',
         },
         {
-          name: '__component:custom-actions',
+          name: 'Other Sectors',
+          title: 'Actions',
+          titleClass: 'has-text-centered',
+          dataClass: 'has-text-centered',
+        },
+        {
+          name: 'Reporting Agency',
+          title: 'Actions',
+          titleClass: 'has-text-centered',
+          dataClass: 'has-text-centered',
+        },
+        {
+          name: 'Funders',
+          title: 'Actions',
+          titleClass: 'has-text-centered',
+          dataClass: 'has-text-centered',
+        },
+        {
+          name: 'Implementers',
+          title: 'Actions',
+          titleClass: 'has-text-centered',
+          dataClass: 'has-text-centered',
+        },
+        {
+          name: 'Implementer Category',
+          title: 'Actions',
+          titleClass: 'has-text-centered',
+          dataClass: 'has-text-centered',
+        },
+        {
+          name: 'Project Website',
+          title: 'Actions',
+          titleClass: 'has-text-centered',
+          dataClass: 'has-text-centered',
+        },
+        {
+          name: 'Gender',
+          title: 'Actions',
+          titleClass: 'has-text-centered',
+          dataClass: 'has-text-centered',
+        },
+        {
+          name: 'Capacity Building',
+          title: 'Actions',
+          titleClass: 'has-text-centered',
+          dataClass: 'has-text-centered',
+        },
+        {
+          name: 'Stabilisation',
           title: 'Actions',
           titleClass: 'has-text-centered',
           dataClass: 'has-text-centered',
@@ -138,16 +200,11 @@ export default {
     allcap(value) {
       return value.toUpperCase();
     },
-    genderLabel(value) {
-      return value === 'M'
-        ? '<span class="tag is-primary is-medium"><span class="icon"><i class="fa fa-mars"></i></span>&nbsp;Male</span>'
-        : '<span class="tag is-danger is-medium"><span class="icon"><i class="fa fa-venus"></i></span>&nbsp;Female</span>';
-    },
     formatNumber(value) {
       return accounting.formatNumber(value, 0);
     },
-    formatDate(value, fmt = 'D MMM YYYY') {
-      return (value == null) ? '' : moment(value, 'YYYY-MM-DD').format(fmt);
+    formatDate(value, fmt = 'MMM, YYYY') {
+      return (value == null) ? '' : moment(value, 'MMM, YYYY').format(fmt);
     },
     onPaginationData(paginationData) {
       this.$refs.pagination.setPaginationData(paginationData);
