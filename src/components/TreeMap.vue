@@ -12,7 +12,12 @@
         <input class="is-medium" type="radio" name="mode" value="2017">  2017
       </label>
     </div>
-    <div id="container" style="width: 100%; height: 650px;"></div>
+    <div id="container" style="width: 100%; height: 600px;"></div>
+    <div class="disclaimer">
+      <p class="disclaimer-text">
+        * Projects under a certain value, relative to the largest project within each subsector, are not shown in this chart. To see all projects, please visit the <router-link to="/tables/projects">projects table</router-link>.
+      </p>
+    </div>
   </div>
 </template>
 
@@ -157,8 +162,9 @@ export default {
 
         const chart = anychart.treeMap(year2015);
         chart.headers().format("{%name} :: Project allocation: ${%value}{groupsSeparator:\\,}");
+        chart.headers().fontWeight('bold');
         chart.labels().format("{%name}");
-        chart.labels().fontSize(14);
+        chart.labels().fontSize(12);
         chart.labels().fontWeight(900);
         chart.tooltip().titleFormat("{%name}");
         chart.tooltip().format("${%Value}{groupsSeparator:\\,}");
@@ -197,5 +203,11 @@ export default {
   }
   label {
     font-size: 18px;
+  }
+
+  .disclaimer-text {
+    font-style: italic;
+    font-size: 12px;
+    color: gray;
   }
 </style>
