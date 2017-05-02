@@ -26,6 +26,7 @@
 import store from '../vuex/store';
 
 const projects = store.state.projects;
+console.log(projects);
 
 let tree2015 = {
   key: '2015',
