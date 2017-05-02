@@ -81,6 +81,7 @@ export default {
   <style>
     .outline {
       border: 1px solid rgba(0, 209, 178, 0.7);
+      margin: 1px;
     }
 
     .sidebar-title {
