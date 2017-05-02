@@ -1,39 +1,35 @@
 <template>
   <div class="container">
-    <nav class="level is-marginless">
+    <nav class="level is-marginless" id="nav">
       <div class="level-left">
         <div class="level-item">
-          <filter-bar></filter-bar>
+          <form id="search">
+            <input name="query" class="input" placeholder="search to filter by any field" v-model="searchQuery">
+          </form>
         </div>
       </div>
       <div class="level-right">
-        <a class="button is-primary exportClick" v-on:click="exportClick">
-        <span class="icon">
-          <i class="fa fa-table"></i>
-        </span>
-        <span>Export Table</span>
-        </a>
+        <div class="level-item">
+          <a class="button is-primary exportClick" v-on:click="exportClick">
+          <span class="icon">
+            <i class="fa fa-table"></i>
+          </span>
+          <span>Export Table</span>
+          </a>
+        </div>
       </div>
     </nav>
     <div class="scrollable">
-      <data-table class="grid"
-        :data="projects"
-        :columns-to-display="gridColumns"
-      >
-      </data-table>
+      
     </div>
   </div>
 </template>
-
-<script src="https://cdn.rawgit.com/mikemenaker/vue-data-table/1.0.1/src/v-data-table.min.js"></script>
 
 <script>
 import accounting from 'accounting';
 import moment from 'moment';
 import Vue from 'vue';
 import DetailRow from './DetailRow';
-import FilterBar from './FilterBar';
-import DataTable from './v-data-table.vue';
 import store from '../../vuex/store';
 
 const projects = store.state.projectTable;
@@ -43,12 +39,16 @@ Vue.component('my-detail-row', DetailRow);
 export default {
   name: 'ProjectTable',
   components: {
-    FilterBar,
-    DataTable,
   },
   data() {
     return {
-      gridColumns: ['Location', 'Project title'],
+      gridColumns: ['Project title', 'Start Date', 'End Date ', 'NDP Pillar', 'Funders', 'Implementers', 'Project Value (USD)'],
+      searchQuery: '',
+      displayNames: {
+        'Project title': 'Project Title',
+        'Funders': 'Funder(s)',
+        'Project Value (USD)': 'Total Project Value',
+      },
       projects,
     };
   },
@@ -82,8 +82,9 @@ export default {
 </script>
 
 <style scoped>
-  .scrollable {
-    position: relative;
-    overflow: auto;
+
+  .level-item {
+    margin-top: 6%;
   }
+
 </style>§

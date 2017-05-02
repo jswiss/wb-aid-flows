@@ -26,6 +26,7 @@
 import store from '../vuex/store';
 
 const projects = store.state.projects;
+anychart.licenseKey("80outrage-432962df-89451e8b");
 
 let tree2015 = {
   key: '2015',

@@ -51,14 +51,12 @@
 <script type="text/javascript">
 import accounting from 'accounting';
 import store from '../../vuex/store';
-import FilterBar from './FilterBar';
 
 const donors = store.state.donors;
 
 export default {
   name: 'DonorTable',
   components: {
-    FilterBar,
   },
   data() {
     return {
