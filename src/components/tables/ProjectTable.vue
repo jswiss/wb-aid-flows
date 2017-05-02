@@ -7,36 +7,25 @@
         </div>
       </div>
       <div class="level-right">
-          <a class="button is-primary exportClick" v-on:click="exportClick">
-          <span class="icon">
-            <i class="fa fa-table"></i>
-          </span>
-          <span>Export Table</span>
-          </a>
-        <vuetable-pagination-info ref="paginationInfo"
-        ></vuetable-pagination-info>
+        <a class="button is-primary exportClick" v-on:click="exportClick">
+        <span class="icon">
+          <i class="fa fa-table"></i>
+        </span>
+        <span>Export Table</span>
+        </a>
       </div>
     </nav>
     <div class="scrollable">
-      <vuetable ref="vuetable"
-        api-url="http://vuetable.ratiw.net/api/users"
-        :fields="fields"
-        :css="css"
-        pagination-path=""
-        :multi-sort="true"
-        multi-sort-key="ctrl"
-        :sort-order="sortOrder"
-        detail-row-component="my-detail-row"
-        :append-params="moreParams"
-        @vuetable:cell-clicked="onCellClicked"
-        @vuetable:pagination-data="onPaginationData"
-      ></vuetable>
+      <data-table class="grid"
+        :data="projects"
+        :columns-to-display="gridColumns"
+      >
+      </data-table>
     </div>
-    <bulma-pagination ref="pagination"
-      @vuetable-pagination:change-page="onChangePage"
-    ></bulma-pagination>
   </div>
 </template>
+
+<script src="https://cdn.rawgit.com/mikemenaker/vue-data-table/1.0.1/src/v-data-table.min.js"></script>
 
 <script>
 import accounting from 'accounting';
@@ -44,6 +33,7 @@ import moment from 'moment';
 import Vue from 'vue';
 import DetailRow from './DetailRow';
 import FilterBar from './FilterBar';
+import DataTable from './v-data-table.vue';
 import store from '../../vuex/store';
 
 const projects = store.state.projectTable;
@@ -54,10 +44,12 @@ export default {
   name: 'ProjectTable',
   components: {
     FilterBar,
+    DataTable,
   },
   data() {
     return {
-
+      gridColumns: ['Location', 'Project title'],
+      projects,
     };
   },
   methods: {
@@ -77,19 +69,14 @@ export default {
       this.$refs.vuetable.toggleDetailRow(data.id);
     },
     exportClick() {
-      // d3.csv(csv, (d) => {
-      //   //eslint-disable-next-line
-      //   console.log(d);
-      // });
+
     },
   },
   mounted() {
-    this.$events.listen('filter-set', filterText => this.onFilterSet(filterText));
-    this.$events.listen('filter-reset', this.onFilterSet);
+
   },
   beforeDestroy() {
-    this.$events.remove('filter-set');
-    this.$events.remove('filter-reset');
+
   },
 };
 </script>

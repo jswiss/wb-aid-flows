@@ -26,7 +26,6 @@
 import store from '../vuex/store';
 
 const projects = store.state.projects;
-console.log(projects);
 
 let tree2015 = {
   key: '2015',
@@ -112,8 +111,6 @@ tree2016 = [{
   })
 }];
 
-console.log(tree2016);
-
 tree2017 = [{
   name: 2017,
   children: tree2017.values.map(location => {
@@ -178,7 +175,8 @@ export default {
           chart.hintOpacity(0.7);
 
           chart.listen("pointClick", (e) => { 
-            console.log(e.point.get('name'))
+            // eslint-disable-next-line
+            console.log(e.point.get('name'));
             const new_value = e.point.get('url');
             if (new_value) {
               window.open(new_value,"_blank"); 
