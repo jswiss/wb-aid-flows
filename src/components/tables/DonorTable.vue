@@ -1,6 +1,23 @@
 <!-- tables -->
 <template lang="html">
   <div id="donor-table" class="container is-fluid">
+    <nav class="level is-marginless">
+      <div class="level-left">
+        <div class="level-item">
+          <filter-bar></filter-bar>
+        </div>
+      </div>
+      <div class="level-right">
+          <a class="button is-primary exportClick" v-on:click="exportClick">
+          <span class="icon">
+            <i class="fa fa-table"></i>
+          </span>
+          <span>Export Table</span>
+          </a>
+        <!--<vuetable-pagination-info ref="paginationInfo"
+        ></vuetable-pagination-info>-->
+      </div>
+    </nav>
     <table class="table is-bordered is-striped is-narrow">
       <thead>
         <tr>
@@ -34,11 +51,15 @@
 <script type="text/javascript">
 import accounting from 'accounting';
 import store from '../../vuex/store';
+import FilterBar from './FilterBar';
 
 const donors = store.state.donors;
 
 export default {
   name: 'DonorTable',
+  components: {
+    FilterBar,
+  },
   data() {
     return {
       donors: donors,
@@ -48,7 +69,21 @@ export default {
 
   },
   methods: {
-    
+    exportClick() {
+
+    },
+    onFilterSet(filterText) {
+      this.moreParams = {
+        // eslint-disable-next-line
+        'filter': filterText,
+      };
+      Vue.nextTick(() => this.$refs.vuetable.refresh());
+    },
+    onFilterReset() {
+      this.moreParams = {};
+      this.$refs.vuetable.refresh();
+      Vue.nextTick(() => this.$refs.vuetable.refresh());
+    },
   },
 };
 </script>
