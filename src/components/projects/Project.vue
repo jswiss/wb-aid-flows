@@ -117,7 +117,7 @@
       <h3 class="title is-3">Funders and Implementers</h3>
     </div>
     <div id="basic-info" class="info-box">
-      <div id="funder" class="columns has-text-centered">
+      <div id="funder" class="columns">
         <div class="column is-5">
           <h4 class="title is-4 is-bold"><span class="donor">Reporting Agency:</span></h4>
           <p class="funder">{{ project['Reporting Agency'] || 'n/a' }}</p>
@@ -128,7 +128,7 @@
           <p class="implementer" id="implementer">{{ project['Implementers'] || 'n/a' }}</p>
         </div>
       </div>
-      <div id="implementer" class="columns has-text-centered">
+      <div id="implementer" class="columns">
         <div class="column is-5">
           <h4 class="title is-4 is-bold"><span class="donor">Funder(s):</span></h4>
           <p class="funder">{{ project['Funders'] || 'n/a' }}</p>
@@ -144,7 +144,7 @@
       <h3 class="title is-3">Project Thematic Focuses</h3>
     </div>
     <div id="basic-info" class="info-box">
-      <div id="focuses" class="columns has-text-centered">
+      <div id="focuses" class="columns">
         <div class="column is-4">
           <h4 class="title is-4 is-bold"><span class="focus">Gender:</span></h4>
           <p class="proj-focus">{{ project.Gender || 'n/a' }}</p>
@@ -199,17 +199,10 @@
 
 <style scoped>
   #pillars {
-    margin-top: 0%;
+    margin-top: 1%;
   }
-
   .title {
     margin-bottom: 2px;
-  }
-  #project-title {
-    text-indent: 8px;
-  }
-  #funder {
-    margin-top: 2%;
   }
   .year-row {
     font-weight: bold;
@@ -230,6 +223,12 @@
     font-weight: bold;
   }
   #value {
+    margin-top: 1%;
+  }
+  #funder {
+    margin-top: 1%;
+  }
+  #focuses {
     margin-top: 1%;
   }
 </style>
