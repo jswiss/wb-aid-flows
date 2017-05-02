@@ -29,7 +29,7 @@
         <div class="column is-2"></div>
         <div class="column is-5" id="project-website">
           <h4 class="title is-4">Project Website:</h4>
-          <p class="url">{{ project['Links to project webpages or documents'] || 'n/a'}}</p>
+          <a v-bind:href="project['Links to project webpages or documents']"><p class="url">{{ project['Links to project webpages or documents'] || 'n/a'}}</p></a>
         </div>
       </div>
     </div>
