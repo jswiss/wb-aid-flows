@@ -87,6 +87,63 @@
         <p class="proj-focus">{{ project.Stabilization || 'n/a' }}</p>
       </div>
     </div>
+    <div id="table-allocation">
+      <h3 class="title is-3">Project Disbursements by Year & Location</h3>
+      <table class="table is-bordered is-striped is-narrow">
+      <thead>
+        <tr>
+          <th><abbr title=""></abbr></th>
+          <th><abbr title="Federal Government of Somalia">FGS</abbr></th>
+          <th><abbr title="Benadir">Benadir</abbr></th>
+          <th><abbr title="2015, USD">Galmudug</abbr></th>
+          <th><abbr title="Hiiraan & Middle Shabelle">HiirShabelle</abbr></th>
+          <th><abbr title="Jubaland">Jubaland</abbr></th>
+          <th><abbr title="Puntland">Puntland</abbr></th>
+          <th><abbr title="Somaliland">Somaliland</abbr></th>
+          <th><abbr title="South West">South West</abbr></th>
+          <th><abbr title="Unattributed">Unattributed</abbr></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="year-row">2015</td>
+          <td>${{ project['FGS - 2015'] || 0 | currency }}</td>
+          <td>${{ project['Benadir - 2015'] || 0 | currency }}</td>
+          <td>${{ project['Galmudug - 2015'] || 0 | currency }}</td>
+          <td>${{ project['Hiiraan & Middle Shabelle - 2015'] || 0 | currency }}</td>
+          <td>${{ project['Jubaland - 2015'] || 0 | currency }}</td>
+          <td>${{ project['Puntland - 2015'] || 0 | currency }}</td>
+          <td>${{ project['Somaliland - 2015'] || 0 | currency }}</td>
+          <td>${{ project['South West - 2015'] || 0 | currency }}</td>
+          <td>${{ project['Unattributed - 2015'] || 0 | currency }}</td>
+        </tr>
+        <tr>
+          <td class="year-row">2016</td>
+          <td>${{ project['FGS - 2016'] || 0 | currency }}</td>
+          <td>${{ project['Benadir - 2016'] || 0 | currency }}</td>
+          <td>${{ project['Galmudug - 2016'] || 0 | currency }}</td>
+          <td>${{ project['Hiiraan & Middle Shabelle - 2016'] || 0 | currency }}</td>
+          <td>${{ project['Jubaland - 2016'] || 0 | currency }}</td>
+          <td>${{ project['Puntland - 2016'] || 0 | currency }}</td>
+          <td>${{ project['Somaliland - 2016'] || 0 | currency }}</td>
+          <td>${{ project['South West - 2016'] || 0 | currency }}</td>
+          <td>${{ project['Unattributed - 2016'] || 0 | currency }}</td>
+        </tr>
+        <tr>
+          <td class="year-row">2017</td>
+          <td>${{ project['FGS - 2017'] || 0 | currency }}</td>
+          <td>${{ project['Benadir - 2017'] || 0 | currency }}</td>
+          <td>${{ project['Galmudug - 2017'] || 0 | currency }}</td>
+          <td>${{ project['Hiiraan & Middle Shabelle - 2017'] || 0 | currency }}</td>
+          <td>${{ project['Jubaland - 2017'] || 0 | currency }}</td>
+          <td>${{ project['Puntland - 2017'] || 0 | currency }}</td>
+          <td>${{ project['Somaliland - 2017'] || 0 | currency }}</td>
+          <td>${{ project['South West - 2017'] || 0 | currency }}</td>
+          <td>${{ project['Unattributed - 2017'] || 0 | currency }}</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
   </div>
 </template>
 
@@ -136,6 +193,12 @@
     text-indent: 8px;
   }
   #funder {
+    margin-top: 2%;
+  }
+  .year-row {
+    font-weight: bold;
+  }
+  #table-allocation {
     margin-top: 2%;
   }
 </style>
