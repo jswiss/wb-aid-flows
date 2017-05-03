@@ -195,7 +195,7 @@
           return project['Project title'] === projectName;
         }
         this.project = projects.find(findProject);
-        console.log(this.project);
+        // console.log(this.project);
       },
       printPage(el) {
         window.print();
