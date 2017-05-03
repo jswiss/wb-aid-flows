@@ -1,16 +1,16 @@
 <template>
   <div class="container">
-    <nav class="level is-marginless">
+    <nav class="level">
       <div class="level-left">
         <div class="level-item">
           <div class="filter-bar control is-grouped">
             <div class="field">
-              <p class="control has-icons-left has-icons-right">
+              <p class="control">
                 <input 
                   class="input is-success"
                   type="text"
                   v-model="searchQuery"
-                  placeholder="Search name, nickname, or email"
+                  placeholder="Search by any field"
                   value="search"
                 >
               </p>
@@ -19,7 +19,9 @@
         </div>
       </div>
       <div class="level-right">
-        <a class="button is-primary exportClick" v-on:click="exportClick">
+        <a class="button is-primary exportCSV" 
+        v-on:click="exportCSV"
+        >
         <span class="icon">
           <i class="fa fa-table"></i>
         </span>
@@ -63,6 +65,7 @@
 
 <script>
 import Vue from 'vue';
+import jsonexport from 'jsonexport';
 import DataTable from './v-data-table.vue';
 import store from '../../vuex/store';
 
@@ -100,12 +103,25 @@ export default {
       console.log('cellClicked: ', field.name);
       this.$refs.vuetable.toggleDetailRow(data.id);
     },
-    exportClick() {
-
+    exportCSV() {
+      jsonexport(projects, (err, csv) => {
+        console.log('hit');
+        if (err) return console.log(err);
+        (function downloadCSV(args) {
+          console.log('smash');
+          if (csv === null) return;
+          const filename = 'Somalia_Aid_Flows_Project_Data.csv';
+          if (!csv.match(/^data:text\/csv/i)) {
+            csv = 'data:text/csv;charset=utf-8,' + csv;
+          }
+          const data = encodeURI(csv);
+          let link = document.createElement('a');
+          link.setAttribute('href', data);
+          link.setAttribute('download', filename);
+          link.click();
+        })();
+      });
     },
-  },
-  mounted() {
-
   },
   beforeDestroy() {
 
@@ -117,5 +133,12 @@ export default {
   .scrollable {
     position: relative;
     overflow: auto;
+  }
+  .level {
+    margin-top: 2%;
+    margin-bottom: 0%;
+  }
+  input {
+    width: 300px;
   }
 </style>
