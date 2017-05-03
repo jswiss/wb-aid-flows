@@ -7,7 +7,6 @@ import store from './vuex/store';
 import router from './router';
 import navbar from './components/Navbar';
 
-
 Vue.filter('currency', val => accounting.formatNumber(val));
 
 const projectData = require('./assets/project-master-csv.csv');

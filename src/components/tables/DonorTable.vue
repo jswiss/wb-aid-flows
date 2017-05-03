@@ -4,7 +4,6 @@
     <nav class="level is-marginless">
       <div class="level-left">
         <div class="level-item">
-          <filter-bar></filter-bar>
         </div>
       </div>
       <div class="level-right">
@@ -37,19 +36,18 @@
           <td>{{item.Agency}}</td>
           <td>{{item['Agency category']}}</td>
           <td>{{item['Aid Flow category']}}</td>
-          <td>{{item['2015, USD'] | currency}}</td>
-          <td>{{item['2016, USD'] | currency}}</td>
-          <td>{{item['2017, USD'] | currency}}</td>
-          <td>{{item['2018, USD'] | currency}}</td>
-          <td>{{item['2019, USD'] | currency}}</td>
-          <td>{{item['Total, 2015-19'] | currency}}</td>
+          <td>${{item['2015, USD'] | currency}}</td>
+          <td>${{item['2016, USD'] | currency}}</td>
+          <td>${{item['2017, USD'] | currency}}</td>
+          <td>${{item['2018, USD'] | currency}}</td>
+          <td>${{item['2019, USD'] | currency}}</td>
+          <td>${{item['Total, 2015-19'] | currency}}</td>
         </tr>
       </tbody>
     </table>
   </div>
 </template>
 <script type="text/javascript">
-import accounting from 'accounting';
 import store from '../../vuex/store';
 
 const donors = store.state.donors;
