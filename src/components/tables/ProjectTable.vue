@@ -105,10 +105,8 @@ export default {
     },
     exportCSV() {
       jsonexport(projects, (err, csv) => {
-        console.log('hit');
         if (err) return console.log(err);
         (function downloadCSV(args) {
-          console.log('smash');
           if (csv === null) return;
           const filename = 'Somalia_Aid_Flows_Project_Data.csv';
           if (!csv.match(/^data:text\/csv/i)) {

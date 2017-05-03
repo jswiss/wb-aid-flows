@@ -1,92 +1,140 @@
-<!-- tables -->
-<template lang="html">
-  <div id="donor-table" class="container is-fluid">
-    <nav class="level is-marginless">
+<template>
+  <div class="container">
+    <nav class="level">
       <div class="level-left">
         <div class="level-item">
+          <div class="filter-bar control is-grouped">
+            <div class="field">
+              <p class="control">
+                <input 
+                  class="input is-success"
+                  type="text"
+                  v-model="searchQuery"
+                  placeholder="Search by any field"
+                  value="search"
+                >
+              </p>
+            </div>
+          </div>
         </div>
       </div>
       <div class="level-right">
-          <a class="button is-primary exportClick" v-on:click="exportClick">
-          <span class="icon">
-            <i class="fa fa-table"></i>
-          </span>
-          <span>Export Table</span>
-          </a>
-        <!--<vuetable-pagination-info ref="paginationInfo"
-        ></vuetable-pagination-info>-->
+        <a class="button is-primary exportCSV" 
+        v-on:click="exportCSV"
+        >
+        <span class="icon">
+          <i class="fa fa-table"></i>
+        </span>
+        <span>Export Table</span>
+        </a>
       </div>
     </nav>
-    <table class="table is-bordered is-striped is-narrow">
-      <thead>
-        <tr>
-          <th><abbr title="Agency">Agency</abbr></th>
-          <th><abbr title="Agency Category">Agency Category</abbr></th>
-          <th><abbr title="Aid Flow Category">Category</abbr></th>
-          <th><abbr title="2015, USD">2015, USD</abbr></th>
-          <th><abbr title="2016, USD">2016, USD</abbr></th>
-          <th><abbr title="2017, USD">2017, USD</abbr></th>
-          <th><abbr title="2018, USD">2018, USD</abbr></th>
-          <th><abbr title="2019, USD">2019, USD</abbr></th>
-          <th><abbr title="Total 2015 - 2019">Total</abbr></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="item in donors">
-          <td>{{item.Agency}}</td>
-          <td>{{item['Agency category']}}</td>
-          <td>{{item['Aid Flow category']}}</td>
-          <td>${{item['2015, USD'] | currency}}</td>
-          <td>${{item['2016, USD'] | currency}}</td>
-          <td>${{item['2017, USD'] | currency}}</td>
-          <td>${{item['2018, USD'] | currency}}</td>
-          <td>${{item['2019, USD'] | currency}}</td>
-          <td>${{item['Total, 2015-19'] | currency}}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="scrollable">
+      <data-table class="table is-bordered is-striped is-narrow"
+        :data="donors"
+        :columns-to-display="columnsToDisplay"
+        :display-names="displayNames"
+        :filter-key="searchQuery"
+        :child-hideable="true"
+        :child-init-hide="true"
+        :columns-to-not-display="true"
+      >
+        <template slot="Allocation 2015 - USD" scope="props">
+          <p>${{ props.entry['Allocation 2015 - USD'] | currency }}</p>
+        </template>
+        <template slot="Allocation 2016 - USD" scope="props">
+          <p>${{ props.entry['Allocation 2016 - USD'] | currency }}</p>
+        </template>
+        <template slot="Allocation 2017 - USD" scope="props">
+          <p>${{ props.entry['Allocation 2017 - USD'] | currency }}</p>
+        </template>
+        <template slot="Allocation 2018 - USD" scope="props">
+          <p>${{ props.entry['Allocation 2018 - USD'] | currency }}</p>
+        </template>
+        <template slot="Allocation 2019 - USD" scope="props">
+          <p>${{ props.entry['Allocation 2019 - USD'] | currency }}</p>
+        </template>
+        <template slot="Total 2015-19" scope="props">
+          <p>${{ props.entry['Total 2015-19'] | currency }}</p>
+        </template>
+        <template slot="child" scope="props">
+          <b>Original Currency: </b>{{ props.entry['Currency'] || 'n/a' }}
+        </template>
+      </data-table>
+    </div>
   </div>
 </template>
-<script type="text/javascript">
+
+<script>
+import Vue from 'vue';
+import jsonexport from 'jsonexport';
+import DataTable from './v-data-table.vue';
 import store from '../../vuex/store';
 
 const donors = store.state.donors;
+const donorString = JSON.stringify(donors);
+// console.log(donorString);
 
 export default {
   name: 'DonorTable',
   components: {
+    DataTable,
   },
   data() {
     return {
-      donors: donors,
+      donors,
+      gridColumns: ['Agency', 'Agency category', 'Aid Flow category', 'Allocation 2015 - USD', 'Allocation 2016 - USD', 'Allocation 2017 - USD', 'Allocation 2018 - USD', 'Allocation 2019 - USD', 'Total 2015-19', 'Currency'],
+      columnsToDisplay: ['Agency', 'Agency category', 'Aid Flow category', 'Allocation 2015 - USD', 'Allocation 2016 - USD', 'Allocation 2017 - USD', 'Allocation 2018 - USD', 'Allocation 2019 - USD', 'Total 2015-19'],
+      searchQuery: '',
+      displayNames: {
+        'Agency category': 'Agency Category',
+        'Aid Flow category': 'Aid Category',
+        'Allocation 2015 - USD': '2015',
+        'Allocation 2016 - USD': '2016',
+        'Allocation 2017 - USD': '2017',
+        'Allocation 2018 - USD': '2018',
+        'Allocation 2019 - USD': '2019',
+      },
     };
   },
-  computed: {
-
-  },
   methods: {
-    exportClick() {
+    allcap(value) {
+      return value.toUpperCase();
+    },
+    exportCSV() {
+      jsonexport(donors, (err, csv) => {
+        if (err) return console.log(err);
+        (function downloadCSV(args) {
+          if (csv === null) return;
+          const filename = 'Somalia_Aid_Flows_Donor_Envelope.csv';
+          if (!csv.match(/^data:text\/csv/i)) {
+            csv = 'data:text/csv;charset=utf-8,' + csv;
+          }
+          const data = encodeURI(csv);
+          let link = document.createElement('a');
+          link.setAttribute('href', data);
+          link.setAttribute('download', filename);
+          link.click();
+        })();
+      });
+    },
+  },
+  beforeDestroy() {
 
-    },
-    onFilterSet(filterText) {
-      this.moreParams = {
-        // eslint-disable-next-line
-        'filter': filterText,
-      };
-      Vue.nextTick(() => this.$refs.vuetable.refresh());
-    },
-    onFilterReset() {
-      this.moreParams = {};
-      this.$refs.vuetable.refresh();
-      Vue.nextTick(() => this.$refs.vuetable.refresh());
-    },
   },
 };
 </script>
 
 <style scoped>
-  .container {
+  .scrollable {
     position: relative;
     overflow: auto;
+  }
+  .level {
+    margin-top: 2%;
+    margin-bottom: 0%;
+  }
+  input {
+    width: 300px;
   }
 </style>
