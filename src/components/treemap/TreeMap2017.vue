@@ -1,5 +1,5 @@
- <!--home page-->
-<template>
+ <!--tree2017 component-->
+<template v-if="!seen">
   <div id="treemap-=content">
     <div id="container" style="width: 100%; height: 600px;"></div>
   </div>
@@ -72,7 +72,7 @@ export default {
       // if it has 'selected' class, pass variable to chart function
 
       const chart = anychart.treeMap(year2017);
-      chart.headers().format("{%name} :: Project allocation: ${%value}{groupsSeparator:\\,}");
+      chart.headers().format("{%name} :: Project disbursements: ${%value}{groupsSeparator:\\,}");
       chart.headers().fontWeight('bold');
       chart.labels().format("{%name}");
       chart.labels().fontSize(12);

@@ -1,7 +1,7 @@
 <template lang="html">
   <nav class="nav has-shadow" >
     <div class="nav-left">
-      <router-link class="nav-item is-brand" to="/">
+      <router-link class="nav-item is-brand" to="/treemap-2017">
         Somalia Aid Flows
       </router-link>
       <router-link class="nav-item is-tab" to="/charts">

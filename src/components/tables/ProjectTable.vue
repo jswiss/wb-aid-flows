@@ -83,6 +83,7 @@ export default {
       columnsToDisplay: ['Project title', 'Start Date', 'End Date ', 'NDP Pillar', 'Primary Sector', 'Funders', 'Project Value (USD)'],
       searchQuery: '',
       displayNames: {
+        'Project title': 'Project Title',
         'Project Value (USD)': 'Total Project Value',
       },
     };
