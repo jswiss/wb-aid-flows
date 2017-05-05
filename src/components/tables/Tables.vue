@@ -4,12 +4,16 @@
     <tables-tabs></tables-tabs>
     <project-table v-if="['ProjectTable'].indexOf($route.name) > -1"></project-table>
     <donor-table v-if="['DonorTable'].indexOf($route.name) > -1"></donor-table>
+    <locations-table v-if="['LocationsTable'].indexOf($route.name) > -1"></locations-table>
+    <funds-table v-if="['FundsTable'].indexOf($route.name) > -1"></funds-table>
   </div>
 </template>
 <script type="text/javascript">
 import TablesTabs from './TablesTabs';
 import ProjectTable from './ProjectTable';
 import DonorTable from './DonorTable';
+import LocationsTable from './LocationsTable';
+import FundsTable from './FundsTable';
 
 
 export default {
@@ -18,6 +22,8 @@ export default {
     TablesTabs,
     ProjectTable,
     DonorTable,
+    LocationsTable,
+    FundsTable,
   },
 };
 </script>

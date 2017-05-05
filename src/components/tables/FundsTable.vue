@@ -92,7 +92,7 @@ const donorString = JSON.stringify(donors);
 // console.log(donorString);
 
 export default {
-  name: 'DonorTable',
+  name: 'FundsTable',
   components: {
     DataTable,
   },

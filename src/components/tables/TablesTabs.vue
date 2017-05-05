@@ -13,6 +13,16 @@
             Donors
           </router-link>
         </li>
+        <li>
+          <router-link class="nav-item is-tab" to="/tables/locations">
+            Locations
+          </router-link>
+        </li>
+        <li>
+          <router-link class="nav-item is-tab" to="/tables/funds">
+            Funds
+          </router-link>
+        </li>
       </ul>
     </div>
   </div>

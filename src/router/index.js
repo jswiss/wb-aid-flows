@@ -8,6 +8,8 @@ import About from '@/components/about/About';
 import Tables from '@/components/tables/Tables';
 import ProjectTable from '@/components/tables/ProjectTable';
 import DonorTable from '@/components/tables/DonorTable';
+import LocationsTable from '@/components/tables/LocationsTable';
+import FundsTable from '@/components/tables/FundsTable';
 import Charts from '@/components/charts/Charts';
 import OdaChart from '@/components/charts/OdaChart';
 import Chart2 from '@/components/charts/Chart2';
@@ -52,6 +54,14 @@ const routes = [
         path: 'donors',
         name: 'DonorTable',
         component: DonorTable,
+      }, {
+        path: 'locations',
+        name: 'LocationsTable',
+        component: LocationsTable,
+      }, {
+        path: 'funds',
+        name: 'FundsTable',
+        component: FundsTable,
       },
     ],
   }, {
