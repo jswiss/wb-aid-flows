@@ -40,7 +40,7 @@
         :columns-to-not-display="true"
       >
         <template slot="Project title" scope="props">
-          <a v-bind:href="`http://localhost:8080/projects/${props.entry['Project title']}`"><p class="url">{{ props.entry['Project title'] }}</p></a>
+          <a v-bind:href="`http://somaliaaidflows.so.s3-website-us-east-1.amazonaws.com/projects/${props.entry['Project title']}`"><p class="url">{{ props.entry['Project title'] }}</p></a>
         </template>
         <template slot="Start Date" scope="props">
           <p>{{ props.entry['Start Date'] || 'n/a' }}</p>
