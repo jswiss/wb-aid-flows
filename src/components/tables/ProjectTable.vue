@@ -48,8 +48,8 @@
         <template slot="End Date " scope="props">
           <p>{{ props.entry['End Date '] || 'n/a' }}</p>
         </template>
-        <template slot="Project Value (USD)" scope="props">
-          <p>${{ props.entry['Project Value (USD)'] | currency }}</p>
+        <template slot="Sum 2015-17" scope="props">
+          <p>${{ props.entry['Sum 2015-17']  | currency }}</p>
         </template>
         <template slot="child" scope="props">
           <b>Project Description: </b>{{ props.entry['Project objectives / purpose'] || 'n/a' }}
@@ -79,12 +79,12 @@ export default {
   data() {
     return {
       projects,
-      gridColumns: ['Project title', 'Start Date', 'End Date ', 'NDP Pillar', 'Primary Sector', 'Funders', 'Project Value (USD)', 'Project objectives / purpose', 'Implementers'],
-      columnsToDisplay: ['Project title', 'Start Date', 'End Date ', 'NDP Pillar', 'Primary Sector', 'Funders', 'Project Value (USD)'],
+      gridColumns: ['Project title', 'Start Date', 'End Date ', 'NDP Pillar', 'Primary Sector', 'Funders', 'Sum 2015-17', 'Project objectives / purpose', 'Implementers'],
+      columnsToDisplay: ['Project title', 'Start Date', 'End Date ', 'NDP Pillar', 'Primary Sector', 'Funders', 'Sum 2015-17'],
       searchQuery: '',
       displayNames: {
         'Project title': 'Project Title',
-        'Project Value (USD)': 'Total Project Value',
+        'Sum 2015-17': 'Project Value (2015 - 17)',
       },
     };
   },
