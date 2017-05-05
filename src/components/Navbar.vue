@@ -4,7 +4,7 @@
       <router-link class="nav-item is-brand" to="/treemap-2017">
         Somalia Aid Flows
       </router-link>
-      <router-link class="nav-item is-tab" to="/charts">
+      <router-link class="nav-item is-tab" to="/charts/oda-chart">
         <i class="fa fa-dashboard"></i>Charts
       </router-link>
       <router-link class="nav-item is-tab" to="/tables/projects">

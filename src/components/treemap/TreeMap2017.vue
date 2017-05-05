@@ -58,9 +58,6 @@ export default {
   mounted() {
     this.treeMap();
   },
-  beforeDestroy() {
-    window.removeEventListener('resize', this.onResize);
-  },
   methods: {
     treeMap() {
       const colorScheme = ['#45B9EA', '#262261', '#716558', '#594A41', '#594A41'];

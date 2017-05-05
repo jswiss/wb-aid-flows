@@ -1,6 +1,6 @@
 <!-- Chart2 -->
 <template lang="html">
-  <div id="chart-2">
+  <div id="container">
     Chart 2 Goes Here
   </div>
 </template>

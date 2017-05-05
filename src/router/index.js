@@ -9,7 +9,7 @@ import Tables from '@/components/tables/Tables';
 import ProjectTable from '@/components/tables/ProjectTable';
 import DonorTable from '@/components/tables/DonorTable';
 import Charts from '@/components/charts/Charts';
-import Chart1 from '@/components/charts/Chart1';
+import OdaChart from '@/components/charts/OdaChart';
 import Chart2 from '@/components/charts/Chart2';
 import Chart3 from '@/components/charts/Chart3';
 import Chart4 from '@/components/charts/Chart4';
@@ -60,9 +60,9 @@ const routes = [
     component: Charts,
     children: [
       {
-        path: 'chart-1',
-        name: 'Chart1',
-        component: Chart1,
+        path: 'oda-chart',
+        name: 'OdaChart',
+        component: OdaChart,
       }, {
         path: 'chart-2',
         name: 'Chart2',

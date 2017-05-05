@@ -3,8 +3,7 @@
   <div id="dashboard" class="columns">
     <charts-tabs class="column is-one-quarter"></charts-tabs>
     <div id="chart-content" class="column is-three-quarters">
-    Dashboard content will go here
-      <chart-1 v-if="['Chart1'].indexOf($route.name) > -1"></chart-1>
+      <oda-chart v-if="['OdaChart'].indexOf($route.name) > -1"></oda-chart>
       <chart-2 v-if="['Chart2'].indexOf($route.name) > -1"></chart-2>
       <chart-3 v-if="['Chart3'].indexOf($route.name) > -1"></chart-3>
       <chart-4 v-if="['Chart4'].indexOf($route.name) > -1"></chart-4>
@@ -15,7 +14,7 @@
 </template>
 <script type="text/javascript">
   import ChartsTabs from './ChartsTabs';
-  import Chart1 from './Chart1';
+  import OdaChart from './OdaChart';
   import Chart2 from './Chart2';
   import Chart3 from './Chart3';
   import Chart4 from './Chart4';
@@ -26,7 +25,7 @@
     name: 'Charts',
     components: {
       ChartsTabs,
-      Chart1,
+      OdaChart,
       Chart2,
       Chart3,
       Chart4,

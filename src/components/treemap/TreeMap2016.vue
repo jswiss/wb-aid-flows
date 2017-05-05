@@ -59,9 +59,6 @@ export default {
   mounted() {
     this.treeMap();
   },
-  beforeDestroy() {
-    window.removeEventListener('resize', this.onResize);
-  },
   methods: {
     treeMap() {
       const years = document.querySelectorAll('input');
