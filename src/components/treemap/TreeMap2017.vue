@@ -1,7 +1,9 @@
  <!--tree2017 component-->
 <template v-if="!seen">
-  <div id="treemap-=content">
-    <div id="container" style="width: 100%; height: 600px;"></div>
+  <div id="treemap-=content" class="columns is-mobile">
+    <div class="column">
+      <div id="container" style="width: 100%; height: 600px;"></div>
+    </div>
   </div>
 </template>
 

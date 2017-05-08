@@ -12,7 +12,7 @@
           <h3 class="title is-3">Basic Information</h3>
         </div>
         <div id="basic-info" class="info-box">
-          <div id="pillars" class="columns">
+          <div id="pillars" class="columns is-mobile">
             <div class="column is-4">
               <h4 class="title is-4 is-bold"><span class="ndp">NDP Pillar:</span></h4>
               <p class="pillar">{{ project['NDP Pillar'] }}</p>
@@ -26,7 +26,7 @@
               <p class="pillar">{{ project['Links to other Sector'] || 'n/a' }}</p>
             </div>
           </div>
-          <div id="desc" class="columns">
+          <div id="desc" class="columns is-mobile">
             <div class="column is-5" id="description">
               <h4 class="title is-4 is-bold">Description:</h4>
               <p class="desc-text">{{ project['Project objectives / purpose'] || 'n/a' }}</p>
@@ -42,7 +42,7 @@
           <h3 class="title is-3">Financial Information</h3>
         </div>
         <div id="financial-info" class="info-box">
-          <div id="value" class="columns">
+          <div id="value" class="columns is-mobile">
             <div class="column is-3" id="project-value">
               <h4 class="title is-4 is-bold">Total Project Value:</h4>
               <p id="total-value" class="desc-text">${{ project['Project Value (USD)'] | currency }}</p>
@@ -122,7 +122,7 @@
           <h3 class="title is-3">Funders and Implementers</h3>
         </div>
         <div id="basic-info" class="info-box">
-          <div id="funder" class="columns">
+          <div id="funder" class="columns is-mobile">
             <div class="column is-5">
               <h4 class="title is-4 is-bold"><span class="donor">Reporting Agency:</span></h4>
               <p class="funder">{{ project['Reporting Agency'] || 'n/a' }}</p>
@@ -133,7 +133,7 @@
               <p class="implementer" id="implementer">{{ project['Implementers'] || 'n/a' }}</p>
             </div>
           </div>
-          <div id="implementer" class="columns">
+          <div id="implementer" class="columns is-mobile">
             <div class="column is-5">
               <h4 class="title is-4 is-bold"><span class="donor">Funder(s):</span></h4>
               <p class="funder">{{ project['Funders'] || 'n/a' }}</p>
@@ -149,7 +149,7 @@
           <h3 class="title is-3">Project Thematic Focuses</h3>
         </div>
         <div id="basic-info" class="info-box">
-          <div id="focuses" class="columns">
+          <div id="focuses" class="columns is-mobile">
             <div class="column is-4">
               <h4 class="title is-4 is-bold"><span class="focus">Gender:</span></h4>
               <p class="proj-focus">{{ project.Gender || 'n/a' }}</p>

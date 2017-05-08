@@ -1,6 +1,6 @@
   <template lang="html">
     <div id="chart-menu">
-      <div class="columns">
+      <div class="columns is-mobile">
         <div class="outline">
           <router-link class="nav-item" to="/charts/oda-chart" >
             <div id="chart-selector-1" class="column">

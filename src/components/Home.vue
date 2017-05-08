@@ -1,6 +1,6 @@
  <!--home page-->
 <template>
-  <div class="columns is-gapless">  
+  <div class="columns is-gapless is-mobile">  
     <div class="column is-3">
       <home-text></home-text>
     </div>

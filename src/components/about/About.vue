@@ -1,6 +1,6 @@
  <!--home page-->
 <template>
-  <div class="columns">
+  <div class="columns is-mobile">
     <div class="column is-2"></div>
     <div class="column is-8">
       <p>
@@ -43,5 +43,9 @@
     padding: 0% 2% 1% 2%;
     box-shadow: 1px 1px 3px #c6c6c6;
     background-color: #dcdcdc;
+  }
+
+  p {
+    text-align: justify;
   }
 </style>

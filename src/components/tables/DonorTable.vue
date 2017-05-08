@@ -1,82 +1,86 @@
 <template>
   <div class="container">
-    <nav class="level">
-      <div class="level-left">
-        <div class="level-item">
-          <div class="filter-bar control is-grouped">
-            <div class="field">
-              <p class="control">
-                <input 
-                  class="input is-success"
-                  type="text"
-                  v-model="searchQuery"
-                  placeholder="Search by any field"
-                  value="search"
-                >
-              </p>
+    <div class="columns is-mobile">
+      <div class="column">
+        <nav class="level">
+          <div class="level-left">
+            <div class="level-item">
+              <div class="filter-bar control is-grouped">
+                <div class="field">
+                  <p class="control">
+                    <input 
+                      class="input is-success"
+                      type="text"
+                      v-model="searchQuery"
+                      placeholder="Search by any field"
+                      value="search"
+                    >
+                  </p>
+                </div>
+              </div>
+              <div class="filter-bar control is-grouped">
+                <div class="field">
+                  <span class="control">
+                    <select 
+                      class="select"
+                      type="text"
+                      v-model="searchQuery"
+                      value="search"
+                    >
+                      <option value="">null</option>
+                      <option value="European Commission">European Commission</option>
+                      <option value="Italy">Italy</option>
+                    </select>
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="filter-bar control is-grouped">
-            <div class="field">
-              <span class="control">
-                <select 
-                  class="select"
-                  type="text"
-                  v-model="searchQuery"
-                  value="search"
-                >
-                  <option value="">null</option>
-                  <option value="European Commission">European Commission</option>
-                  <option value="Italy">Italy</option>
-                </select>
-              </span>
-            </div>
+          <div class="level-right">
+            <a class="button is-primary exportCSV" 
+            v-on:click="exportCSV"
+            >
+            <span class="icon">
+              <i class="fa fa-table"></i>
+            </span>
+            <span>Export Table</span>
+            </a>
           </div>
+        </nav>
+        <div class="scrollable">
+          <data-table class="table is-bordered is-striped is-narrow"
+            :data="donors"
+            :columns-to-display="columnsToDisplay"
+            :display-names="displayNames"
+            :filter-key="searchQuery"
+            :child-hideable="true"
+            :child-init-hide="true"
+            :columns-to-not-display="true"
+          >
+            <template slot="Allocation 2015 - USD" scope="props">
+              <p>${{ props.entry['Allocation 2015 - USD'] | currency }}</p>
+            </template>
+            <template slot="Allocation 2016 - USD" scope="props">
+              <p>${{ props.entry['Allocation 2016 - USD'] | currency }}</p>
+            </template>
+            <template slot="Allocation 2017 - USD" scope="props">
+              <p>${{ props.entry['Allocation 2017 - USD'] | currency }}</p>
+            </template>
+            <template slot="Allocation 2018 - USD" scope="props">
+              <p>${{ props.entry['Allocation 2018 - USD'] | currency }}</p>
+            </template>
+            <template slot="Allocation 2019 - USD" scope="props">
+              <p>${{ props.entry['Allocation 2019 - USD'] | currency }}</p>
+            </template>
+            <template slot="Total 2015-19" scope="props">
+              <p>${{ props.entry['Total 2015-19'] | currency }}</p>
+            </template>
+            <template slot="child" scope="props">
+              <b>Original Currency: </b>{{ props.entry['Currency'] || 'n/a' }}
+            </template>
+          </data-table>
         </div>
       </div>
-      <div class="level-right">
-        <a class="button is-primary exportCSV" 
-        v-on:click="exportCSV"
-        >
-        <span class="icon">
-          <i class="fa fa-table"></i>
-        </span>
-        <span>Export Table</span>
-        </a>
-      </div>
-    </nav>
-    <div class="scrollable">
-      <data-table class="table is-bordered is-striped is-narrow"
-        :data="donors"
-        :columns-to-display="columnsToDisplay"
-        :display-names="displayNames"
-        :filter-key="searchQuery"
-        :child-hideable="true"
-        :child-init-hide="true"
-        :columns-to-not-display="true"
-      >
-        <template slot="Allocation 2015 - USD" scope="props">
-          <p>${{ props.entry['Allocation 2015 - USD'] | currency }}</p>
-        </template>
-        <template slot="Allocation 2016 - USD" scope="props">
-          <p>${{ props.entry['Allocation 2016 - USD'] | currency }}</p>
-        </template>
-        <template slot="Allocation 2017 - USD" scope="props">
-          <p>${{ props.entry['Allocation 2017 - USD'] | currency }}</p>
-        </template>
-        <template slot="Allocation 2018 - USD" scope="props">
-          <p>${{ props.entry['Allocation 2018 - USD'] | currency }}</p>
-        </template>
-        <template slot="Allocation 2019 - USD" scope="props">
-          <p>${{ props.entry['Allocation 2019 - USD'] | currency }}</p>
-        </template>
-        <template slot="Total 2015-19" scope="props">
-          <p>${{ props.entry['Total 2015-19'] | currency }}</p>
-        </template>
-        <template slot="child" scope="props">
-          <b>Original Currency: </b>{{ props.entry['Currency'] || 'n/a' }}
-        </template>
-      </data-table>
     </div>
   </div>
 </template>

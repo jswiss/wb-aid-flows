@@ -1,7 +1,7 @@
 <!-- Chart1 -->
 <template lang="html">
-  <div>
-    <div id="container"></div>
+  <div class="columns is-mobile">
+    <div class="column" id="container"></div>
   </div>
 </template>
 <script type="text/javascript">
