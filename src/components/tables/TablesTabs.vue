@@ -3,7 +3,7 @@
   <div id="tables" class="container is-fluid">
     <div class="tabs is-centered">
       <ul>
-        <li class="is-active">
+        <li>
           <router-link class="nav-item is-tab" to="/tables/projects">
             Projects
           </router-link>
