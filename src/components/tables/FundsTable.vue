@@ -6,7 +6,7 @@
           <div class="level-left">
             <div class="level-item">
               <div class="filter-bar control is-grouped">
-                <!--<div class="field">
+                <div class="field">
                   <p class="control">
                     <input 
                       class="input is-success"
@@ -16,9 +16,9 @@
                       value="search"
                     >
                   </p>
-                </div>-->
+                </div>
               </div>
-              <div class="filter-bar control is-grouped">
+              <!--<div class="filter-bar control is-grouped">
                 <div class="field">
                   <span class="control">
                     <select 
@@ -34,7 +34,7 @@
                     </select>
                   </span>
                 </div>
-              </div>
+              </div>-->
             </div>
           </div>
           <!--<div class="level-center">
