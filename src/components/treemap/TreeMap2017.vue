@@ -76,6 +76,7 @@ export default {
 
       const chart = anychart.treeMap(year2017);
       chart.headers().format("{%name} :: Project disbursements: ${%value}{groupsSeparator:\\,}");
+      chart.headers().fontSize(15);
       chart.headers().fontWeight('bold');
       chart.labels().format("{%name}");
       chart.labels().fontSize(12);

@@ -1,7 +1,7 @@
  <!--home page-->
 <template>
-  <div class="columns is-mobile">
-    <div class="column is-2"></div>
+  <div id="topmost" class="columns is-mobile">
+    <div class="column is-2 buffer"></div>
     <div class="column is-8">
       <p>
         For the past three years, aid flows in Somalia have been tracked through an annual mapping exercise. Significant progress has been made in improving aid transparency, which has served to inform better coordination. Aid data has also proven useful for monitoring aid effectiveness principles.
@@ -47,5 +47,11 @@
 
   p {
     text-align: justify;
+  }
+  #topmost {
+    margin-top: 20px;
+  }
+  .buffer {
+    margin: 20px;
   }
 </style>

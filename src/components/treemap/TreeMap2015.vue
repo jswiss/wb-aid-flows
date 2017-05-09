@@ -40,7 +40,7 @@ tree2015 = [{
                 return {
                   name: project.key,
                   value: project.values,
-                  url: `http://somaliaaidflows.so.s3-website-us-east-1.amazonaws.com/projects${project.key}`,
+                  url: `http://somaliaaidflows.so.s3-website-us-east-1.amazonaws.com/projects/${project.key}`,
                 }
               })
             }
@@ -73,21 +73,23 @@ export default {
           // if it has 'selected' class, pass variable to chart function
 
       const chart = anychart.treeMap(year2015);
-      chart.headers().format("{%name} :: Project disbursements: ${%value}{groupsSeparator:\\,}");
+      chart.headers().format('{%name} :: Project disbursements: ${%value}{groupsSeparator:\\,}');
       chart.headers().fontWeight('bold');
-      chart.labels().format("{%name}");
+      chart.headers().fontSize(15);
+      chart.labels().format('{%name}');
+      chart.labels().textWrap('byLetter')
       chart.labels().fontSize(12);
       chart.labels().fontWeight(900);
-      chart.tooltip().titleFormat("{%name}");
-      chart.tooltip().format("${%Value}{groupsSeparator:\\,}");
+      chart.tooltip().titleFormat('{%name}');
+      chart.tooltip().format('${%Value}{groupsSeparator:\\,}');
       chart.hintOpacity(0.7);
 
-      chart.listen("pointClick", (e) => { 
+      chart.listen('pointClick', (e) => { 
         // eslint-disable-next-line
         console.log(e.point.get('name'));
         const new_value = e.point.get('url');
         if (new_value) {
-          window.open(new_value,"_blank"); 
+          window.open(new_value, '_blank'); 
         }
       });
 

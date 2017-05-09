@@ -10,15 +10,15 @@
       <p class="control" id="radios">
         <label class="radio">
           <input type="radio" name="question" value="2017" v-on:click="tree = 2017, tree2017 = true">
-          2017
+          2017 Project-level Disbursements
         </label>
         <label class="radio">
           <input type="radio" name="question" value="2016" v-on:click="tree = 2016, tree2017 = false">
-          2016
+          2016 Project-level Disbursements
         </label>
         <label class="radio">
           <input type="radio" name="question" value="2015" v-on:click="tree = 2015, tree2017 = false">
-          2015
+          2015 Project-level Disbursements
         </label>
       </p>
     </div>

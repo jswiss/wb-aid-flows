@@ -1,10 +1,11 @@
 <template lang="html">
-  <div class="container">
+  <div id="topmost" class="container">
     <!--<div class="block">
       <a href="#" class="button is-primary" @click="printPage">Print Page</a>
     </div>-->
     <div id="print-area">
       <div id="title">
+        <div class="buffer"></div>
         <h1 id="project-title" class="title is-1"> {{ project['Project title'] }}</h1>
       </div>
       <div class="info-box">
@@ -205,6 +206,9 @@
 </script>
 
 <style scoped>
+  #title {
+    margin-top: 20px;
+  }
   #pillars {
     margin-top: 1%;
   }
@@ -273,4 +277,11 @@
       margin-top: 1%;
     }
   }
+  template {
+    margin: 70px;
+  }
+  #topmost {
+    margin-top: 50px;
+  }
+
 </style>
