@@ -1,6 +1,6 @@
  <!--home page-->
 <template>
-  <div class="columns is-gapless is-mobile">  
+  <div id="topmost" class="columns is-gapless is-mobile">  
     <div class="column is-3">
       <home-text></home-text>
     </div>
@@ -67,5 +67,8 @@ export default {
     font-style: italic;
     font-size: 12px;
     color: gray;
+  }
+  #topmost {
+    margin-top: 25px;
   }
 </style>

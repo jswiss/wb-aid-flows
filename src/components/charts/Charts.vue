@@ -1,6 +1,6 @@
 <!-- dashboard -->
 <template lang="html">
-  <div id="dashboard" class="columns">
+  <div id="topmost" class="columns">
     <charts-tabs class="column is-one-quarter"></charts-tabs>
     <div id="chart-content" class="column is-three-quarters">
       <oda-chart v-if="['OdaChart'].indexOf($route.name) > -1"></oda-chart>
@@ -36,5 +36,7 @@
 </script> 
 
 <style scoped>
-
+  #topmost {
+    margin-top: 25px;
+  }
 </style>

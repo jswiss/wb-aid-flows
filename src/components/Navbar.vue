@@ -1,7 +1,7 @@
 <template lang="html">
   <nav class="nav has-shadow" >
     <div class="nav-left">
-      <router-link class="nav-item is-brand" to="/treemap-2017">
+      <router-link class="nav-item is-brand" to="/">
         Somalia Aid Flows
       </router-link>
       <router-link class="nav-item is-tab" to="/charts/oda-chart">
@@ -23,7 +23,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
   .is-tab {
     text-indent: 10px;
   }
@@ -31,4 +31,12 @@ export default {
   .is-brand {
     font-weight: bold;
   }
+
+
+.nav { 
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+}
 </style>

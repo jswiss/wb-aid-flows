@@ -26,21 +26,6 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
-    children: [
-      {
-        path: 'treemap-2017',
-        name: 'TreeMap2017',
-        component: TreeMap2017,
-      }, {
-        path: 'treemap-2016',
-        name: 'TreeMap2016',
-        component: TreeMap2016,
-      }, {
-        path: 'treemap-2015',
-        name: 'TreeMap2015',
-        component: TreeMap2015,
-      },
-    ],
   }, {
     path: '/tables',
     name: 'Tables',
