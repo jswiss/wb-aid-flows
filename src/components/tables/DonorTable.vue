@@ -16,7 +16,7 @@
                         v-model="searchQuery"
                         value="search"
                       >
-                        <option value="Development ">Development</option>
+                        <option value="Development">Development</option>
                         <option value="Humanitarian">Humanitarian</option>
                         <option value="Peacekeeping">Peacekeeping</option>
                         <option value="">All Categories</option>
