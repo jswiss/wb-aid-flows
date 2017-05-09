@@ -29,9 +29,15 @@
           </div>
           <div class="level-center">
             <div class="level-item">
-              <div class="total">Development: ${{ donors[0]['Development Total'] * 1 | currency }}</div>
-              <div class="total">Humanitarian: ${{ donors[0]['Humanitarian Total'] * 1 | currency }}</div>
-              <div class="total">Peacekeeping: ${{ donors[0]['Peacekeeping Total'] * 1 | currency }}</div>
+              <div class="total">
+                <b>Total Development (2015-19): </b>${{ (donors[0]['Development Total'] * 1) / 1000000000 | decimal }}bn
+              </div>
+              <div class="total">
+                <b>Total Humanitarian (2015-19): </b>${{ donors[0]['Humanitarian Total'] * 1 / 1000000000 | decimal  }}bn
+              </div>
+              <div class="total">
+                <b>Total Peacekeeping (2015-19): </b>${{ donors[0]['Peacekeeping Total'] * 1 / 1000000000 | decimal  }}bn
+              </div>
             </div>
           </div>
           <div class="level-right">
@@ -58,19 +64,19 @@
             :columns-to-not-display="true"
           >
             <template slot="Allocation 2015 - USD" scope="props">
-              <p>${{ props.entry['Allocation 2015 - USD'] | currency }}</p>
+              <p>{{ (props.entry['Allocation 2015 - USD'] | currency) || '-' }}</p>
             </template>
             <template slot="Allocation 2016 - USD" scope="props">
-              <p>${{ props.entry['Allocation 2016 - USD'] | currency }}</p>
+              <p>{{ (props.entry['Allocation 2016 - USD'] | currency) || '-' }}</p>
             </template>
             <template slot="Allocation 2017 - USD" scope="props">
-              <p>${{ props.entry['Allocation 2017 - USD'] | currency }}</p>
+              <p>{{ (props.entry['Allocation 2017 - USD'] | currency || '-') }}</p>
             </template>
             <template slot="Allocation 2018 - USD" scope="props">
-              <p>${{ props.entry['Allocation 2018 - USD'] | currency }}</p>
+              <p>{{ (props.entry['Allocation 2018 - USD'] | currency) || '-' }}</p>
             </template>
             <template slot="Allocation 2019 - USD" scope="props">
-              <p>${{ props.entry['Allocation 2019 - USD'] | currency }}</p>
+              <p>{{ (props.entry['Allocation 2019 - USD'] | currency) || '-' }}</p>
             </template>
             <template slot="Total 2015-19" scope="props">
               <p>${{ props.entry['Total 2015-19'] | currency }}</p>

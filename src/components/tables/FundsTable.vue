@@ -60,10 +60,20 @@
             :filter-key="searchQuery"
             :child-hideable="true"
             :child-init-hide="true"
+            :display-names="displayNames"
             :columns-to-not-display="true"
           >
+            <template slot="2015" scope="props">
+              {{ props.entry['2015'] * 1 || '-' }}
+            </template>
+            <template slot="2016" scope="props">
+              {{ props.entry['2016'] * 1 || '-' }}
+            </template>
+            <template slot="2017" scope="props">
+              {{ props.entry['2017'] * 1 || '-' }}
+            </template>
             <template slot="Total" scope="props">
-              <b>{{ props.entry['Total'] }}</b>
+              <b>${{ props.entry['Total'] * 1 }}m</b>
             </template>
           </data-table>
         </div>
@@ -80,6 +90,13 @@ import store from '../../vuex/store';
 
 const funds = store.state.funds;
 
+funds.forEach(d => {
+  d['2015'] = parseInt(d['2015']);
+  d['2016'] = parseInt(d['2016']);
+  d['2017'] = parseInt(d['2017']);
+  d.Total = parseInt(d.Total);
+})
+
 export default {
   name: 'FundsTable',
   components: {
@@ -89,7 +106,12 @@ export default {
     return {
       funds,
       gridColumns: ['Fund', 'Partner', '2015', '2016', '2017', 'Total', 'SDRF'],
-      columnsToDisplay: ['Fund', 'Partner', '2015', '2016', '2017', 'Total'],
+      columnsToDisplay: ['Partner', 'Fund', '2015', '2016', '2017', 'Total'],
+      displayNames: {
+        '2015': '2015 Partner Disbursement (millions, USD)',
+        '2016': '2016 Partner Disbursement (millions, USD)',
+        '2017': '2017 Partner Disbursement (millions, USD)',
+      },
       searchQuery: '',
     };
   },

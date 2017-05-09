@@ -36,6 +36,9 @@
         // create the chart
         const chart = anychart.area();
 
+        // enable stacked area chart
+        chart.yScale().stackMode('value');
+
         // enable interactivity
         chart.interactivity().hoverMode('single');
 
@@ -60,13 +63,13 @@
         series2.name('Humanitarian');
 
         // configure the visual settings of the second series
-        series2.fill("#262261", 0.3);
-        series2.hoverFill("#262261", 0.3);
-        series2.selectFill("#262261", 0.5);
-        series2.hatchFill("zigzag", "#808080", 1, 15);
-        series2.stroke("#262261");
-        series2.hoverStroke("#262261", 2);
-        series2.selectStroke("#262261", 4);
+        series2.fill("#00D1B2", 0.3);
+        series2.hoverFill("#00D1B2", 0.3);
+        series2.selectFill("#00D1B2", 0.5);
+        // series2.hatchFill("zigzag", "#808080", 1, 15);
+        series2.stroke("#00D1B2");
+        series2.hoverStroke("#00D1B2", 2);
+        series2.selectStroke("#00D1B2", 4);
 
         // set the chart title
         chart.title('ODA Trends in Somalia, 2006 - 2017 (in millions USD)');

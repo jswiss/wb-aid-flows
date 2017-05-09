@@ -9,6 +9,7 @@ import navbar from './components/Navbar';
 import './app.scss';
 
 Vue.filter('currency', val => accounting.formatNumber(val));
+Vue.filter('decimal', val => accounting.formatNumber(val, 2));
 
 const projectData = require('./assets/project-master-csv.csv');
 const donorData = require('./assets/donor-envelopes-csv.csv');
