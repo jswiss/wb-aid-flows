@@ -39,33 +39,37 @@
         // enable interactivity
         chart.interactivity().hoverMode('single');
 
+        // get the chart's tooltip
+        const tooltip = chart.tooltip();
+        tooltip.displayMode('union');
+
         // create the first series, set the data and name
         const series1 = chart.area(seriesData_1);
         series1.name('Development');
 
         // configure the visual settings of the first series
-        series1.fill("#00cc99", 0.3);
-        series1.hoverFill("#00cc99", 0.3);
-        series1.selectFill("#00cc99", 0.5);
-        series1.stroke("#00cc99", 1, "10 5", "round");
-        series1.hoverStroke("#00cc99", 2, "10 5", "round");
-        series1.selectStroke("#00cc99", 4, "10 5", "round");
+        series1.fill("#45B9EA", 0.3);
+        series1.hoverFill("#45B9EA", 0.3);
+        series1.selectFill("#45B9EA", 0.5);
+        series1.stroke("#45B9EA", 1, "10 5", "round");
+        series1.hoverStroke("#45B9EA", 2, "10 5", "round");
+        series1.selectStroke("#45B9EA", 4, "10 5", "round");
 
         // create the second series, set the data and name
         const series2 = chart.area(seriesData_2);
         series2.name('Humanitarian');
 
         // configure the visual settings of the second series
-        series2.fill("#0066cc", 0.3);
-        series2.hoverFill("#0066cc", 0.3);
-        series2.selectFill("#0066cc", 0.5);
+        series2.fill("#262261", 0.3);
+        series2.hoverFill("#262261", 0.3);
+        series2.selectFill("#262261", 0.5);
         series2.hatchFill("zigzag", "#808080", 1, 15);
-        series2.stroke("#0066cc");
-        series2.hoverStroke("#0066cc", 2);
-        series2.selectStroke("#0066cc", 4);
+        series2.stroke("#262261");
+        series2.hoverStroke("#262261", 2);
+        series2.selectStroke("#262261", 4);
 
         // set the chart title
-        chart.title('ODA Trends in Somalia, 2006 - 2017');
+        chart.title('ODA Trends in Somalia, 2006 - 2017 (in millions USD)');
 
         // set the titles of the axes
         const xAxis = chart.xAxis();
