@@ -7,44 +7,44 @@
             <div class="level-item">
               <div class="filter-bar control is-grouped">
                 <div class="field">
+                  <label for="" class="label">Select an Aid Category</label>
                   <p class="control">
-                    <input 
-                      class="input is-success"
-                      type="text"
-                      v-model="searchQuery"
-                      placeholder="Search by any field"
-                      value="search"
-                    >
+                    <span class="select">
+                      <select 
+                        class="select"
+                        type="text"
+                        v-model="searchQuery"
+                        value="search"
+                      >
+                        <option value="Development ">Development</option>
+                        <option value="Humanitarian">Humanitarian</option>
+                        <option value="Peacekeeping">Peacekeeping</option>
+                        <option value="">All Categories</option>
+                      </select>
+                    </span>
                   </p>
-                </div>
-              </div>
-              <div class="filter-bar control is-grouped">
-                <div class="field">
-                  <span class="control">
-                    <select 
-                      class="select"
-                      type="text"
-                      v-model="searchQuery"
-                      value="search"
-                    >
-                      <option value="">null</option>
-                      <option value="European Commission">European Commission</option>
-                      <option value="Italy">Italy</option>
-                    </select>
-                  </span>
                 </div>
               </div>
             </div>
           </div>
+          <div class="level-center">
+            <div class="level-item">
+              <div class="total">Development: ${{ donors[0]['Development Total'] * 1 | currency }}</div>
+              <div class="total">Humanitarian: ${{ donors[0]['Humanitarian Total'] * 1 | currency }}</div>
+              <div class="total">Peacekeeping: ${{ donors[0]['Peacekeeping Total'] * 1 | currency }}</div>
+            </div>
+          </div>
           <div class="level-right">
-            <a class="button is-primary exportCSV" 
-            v-on:click="exportCSV"
-            >
-            <span class="icon">
-              <i class="fa fa-table"></i>
-            </span>
-            <span>Export Table</span>
-            </a>
+            <div class="level-item">
+              <a class="button is-primary exportCSV" 
+              v-on:click="exportCSV"
+              >
+              <span class="icon">
+                <i class="fa fa-table"></i>
+              </span>
+              <span>Export Table</span>
+              </a>
+            </div>
           </div>
         </nav>
         <div class="scrollable">
@@ -92,8 +92,8 @@ import DataTable from './v-data-table.vue';
 import store from '../../vuex/store';
 
 const donors = store.state.donors;
-const donorString = JSON.stringify(donors);
-// console.log(donorString);
+
+console.log(donors);
 
 export default {
   name: 'DonorTable',
