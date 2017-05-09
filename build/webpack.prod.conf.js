@@ -93,7 +93,7 @@ var webpackConfig = merge(baseWebpackConfig, {
       }
     ]),
     // GZIP compression plugin settings
-    new CompressionWebpackPlugin({
+    new CompressionPlugin({
       asset: '[path].gz[query]',
       algorithm: 'gzip',
       test: /\.js$|\.css$|\.html$/,
