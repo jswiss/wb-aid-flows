@@ -7,12 +7,14 @@ const projectData = require('../assets/project-master-csv.csv');
 const donorData = require('../assets/donor-envelopes-csv.csv');
 const projectList = require('../assets/projects-list.csv');
 const fundsData = require('../assets/funds-csv.csv');
+const locationsData = require('../assets/project-location-csv.csv');
 
 const state = {
   projects: projectData,
   donors: donorData,
   projectTable: projectList,
   funds: fundsData,
+  locations: locationsData,
 };
 
 export default new Vuex.Store({

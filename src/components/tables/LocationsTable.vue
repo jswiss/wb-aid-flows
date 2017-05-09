@@ -5,14 +5,27 @@
         <div class="level-item">
           <div class="filter-bar control is-grouped">
             <div class="field">
+              <label for="" class="label">Select a Location</label>
               <p class="control">
-                <input 
-                  class="input is-success"
-                  type="text"
-                  v-model="searchQuery"
-                  placeholder="Search by any field"
-                  value="search"
-                >
+                <span class="select">
+                  <select 
+                    class="select"
+                    type="text"
+                    v-model="searchQuery"
+                    value="search"
+                  >
+                    <option value="">All Locations</option>
+                    <option value="FGS">FGS</option>
+                    <option value="Benadir">Benadir</option>
+                    <option value="Galmudug">Galmudug</option>
+                    <option value="HiirShabelle">HiirShabelle</option>
+                    <option value="Jubaland">Jubaland</option>
+                    <option value="Puntland">Puntland</option>
+                    <option value="South West">South West</option>
+                    <option value="Somaliland">Somaliland</option>
+                    <option value="Unattributed">Unattributed</option>
+                  </select>
+                </span>
               </p>
             </div>
           </div>
@@ -31,97 +44,42 @@
     </nav>
     <div class="scrollable">
       <data-table class="table is-bordered is-striped is-narrow"
-        :data="projects"
+        :data="locations"
         :columns-to-display="columnsToDisplay"
         :display-names="displayNames"
         :filter-key="searchQuery"
         :child-hideable="true"
         :child-init-hide="true"
-        :columns-to-not-display="true"
       >
         <template slot="Project title" scope="props">
           <a v-bind:href="`http://somaliaaidflows.so.s3-website-us-east-1.amazonaws.com/projects/${props.entry['Project title']}`"><p class="url">{{ props.entry['Project title'] }}</p></a>
         </template>
-        <template slot="FGS - 2015" scope="props">
-          <p>{{ props.entry['FGS - 2015'] | currency }}</p>
+        <template slot="Start Date" scope="props">
+          <p>{{ props.entry['Start Date'] || 'n/a' }}</p>
         </template>
-        <template slot="FGS - 2016" scope="props">
-          <p>{{ props.entry['FGS - 2016'] | currency }}</p>
+        <template slot="End Date " scope="props">
+          <p>{{ props.entry['End Date '] || 'n/a' }}</p>
         </template>
-        <template slot="FGS - 2017" scope="props">
-          <p>{{ props.entry['FGS - 2017'] | currency }}</p>
+        <template slot="Location Total 2015-17" scope="props">
+          <p>${{ props.entry['Location Total 2015-17']  | currency }}</p>
         </template>
-        <template slot="Benadir - 2015" scope="props">
-          <p>{{ props.entry['Benadir - 2015'] | currency }}</p>
+        <template slot="2015 Project Location Allocation" scope="props">
+          <p>{{ props.entry['2015 Project Location Allocation']  | currency }}</p>
         </template>
-        <template slot="Benadir - 2016" scope="props">
-          <p>{{ props.entry['Benadir - 2016'] | currency }}</p>
+        <template slot="2016 Project Location Allocation" scope="props">
+          <p>{{ props.entry['2016 Project Location Allocation']  | currency }}</p>
         </template>
-        <template slot="Benadir - 2017" scope="props">
-          <p>{{ props.entry['Benadir - 2017'] | currency }}</p>
+        <template slot="2017 Project Location Allocation" scope="props">
+          <p>{{ props.entry['2017 Project Location Allocation']  | currency }}</p>
         </template>
-        <template slot="Galmudug - 2015" scope="props">
-          <p>{{ props.entry['Galmudug - 2015'] | currency }}</p>
-        </template>
-        <template slot="Galmudug - 2016" scope="props">
-          <p>{{ props.entry['Galmudug - 2016'] | currency }}</p>
-        </template>
-        <template slot="Galmudug - 2017" scope="props">
-          <p>{{ props.entry['Galmudug - 2017'] | currency }}</p>
-        </template>
-        <template slot="Hiiraan & Middle Shabelle - 2015" scope="props">
-          <p>{{ props.entry['Hiiraan & Middle Shabelle - 2015'] | currency }}</p>
-        </template>
-        <template slot="Hiiraan & Middle Shabelle - 2016" scope="props">
-          <p>{{ props.entry['Hiiraan & Middle Shabelle - 2016'] | currency }}</p>
-        </template>
-        <template slot="Hiiraan & Middle Shabelle - 2017" scope="props">
-          <p>{{ props.entry['Hiiraan & Middle Shabelle - 2017'] | currency }}</p>
-        </template>
-        <template slot="Jubaland - 2015" scope="props">
-          <p>{{ props.entry['Jubaland - 2015'] | currency }}</p>
-        </template>
-        <template slot="Jubaland - 2016" scope="props">
-          <p>{{ props.entry['Jubaland - 2016'] | currency }}</p>
-        </template>
-        <template slot="Jubaland - 2017" scope="props">
-          <p>{{ props.entry['Jubaland - 2017'] | currency }}</p>
-        </template>
-        <template slot="Puntland - 2015" scope="props">
-          <p>{{ props.entry['Puntland - 2015'] | currency }}</p>
-        </template>
-        <template slot="Puntland - 2016" scope="props">
-          <p>{{ props.entry['Puntland - 2016'] | currency }}</p>
-        </template>
-        <template slot="Puntland - 2017" scope="props">
-          <p>{{ props.entry['Puntland - 2017'] | currency }}</p>
-        </template>
-        <template slot="South West - 2015" scope="props">
-          <p>{{ props.entry['South West - 2015'] | currency }}</p>
-        </template>
-        <template slot="South West - 2016" scope="props">
-          <p>{{ props.entry['South West - 2016'] | currency }}</p>
-        </template>
-        <template slot="South West - 2017" scope="props">
-          <p>{{ props.entry['South West - 2017'] | currency }}</p>
-        </template>
-        <template slot="Somaliland - 2015" scope="props">
-          <p>{{ props.entry['Somaliland - 2015'] | currency }}</p>
-        </template>
-        <template slot="Somaliland - 2016" scope="props">
-          <p>{{ props.entry['Somaliland - 2016'] | currency }}</p>
-        </template>
-        <template slot="Somaliland - 2017" scope="props">
-          <p>{{ props.entry['Somaliland - 2017'] | currency }}</p>
-        </template>
-        <template slot="Unattributed - 2015" scope="props">
-          <p>{{ props.entry['Unattributed - 2015'] | currency }}</p>
-        </template>
-        <template slot="Unattributed - 2016" scope="props">
-          <p>{{ props.entry['Unattributed - 2016'] | currency }}</p>
-        </template>
-        <template slot="Unattributed - 2017" scope="props">
-          <p>{{ props.entry['Unattributed - 2017'] | currency }}</p>
+        <template slot="child" scope="props">
+          <b>Project Description: </b>{{ props.entry['Project objectives / purpose'] || 'n/a' }}
+          <br>
+          <br>
+          <b>Funders: </b>{{ props.entry['Funders'] || 'n/a' }}
+          <br>
+          <br>
+          <b>Implementers: </b>{{ props.entry['Implementers'] || 'n/a' }}
         </template>
       </data-table>
     </div>
@@ -136,7 +94,14 @@ import jsonexport from 'jsonexport';
 import DataTable from './v-data-table.vue';
 import store from '../../vuex/store';
 
-const projects = store.state.projectTable;
+const locations = store.state.locations;
+
+locations.forEach(d => {
+  d['2015 Project Location Allocation'] = parseInt(d['2015 Project Location Allocation']);
+  d['2016 Project Location Allocation'] = parseInt(d['2016 Project Location Allocation']);
+  d['2017 Project Location Allocation'] = parseInt(d['2017 Project Location Allocation']);
+  d['Location Total 2015-17'] = parseInt(d['Location Total 2015-17']);
+});
 
 export default {
   name: 'LocationsTable',
@@ -145,37 +110,27 @@ export default {
   },
   data() {
     return {
-      projects,
-      gridColumns: ['Project title', 'NDP Pillar', 'Primary Sector', 'FGS - 2015', 'Benadir - 2015', 'Galmudug - 2015', 'Hiiraan & Middle Shabelle - 2015', 'Jubaland - 2015', 'Puntland - 2015', 'South West - 2015', 'Somaliland - 2015', 'Unattributed - 2015', 'FGS - 2016',  'Benadir - 2016',  'Galmudug - 2016',  'Hiiraan & Middle Shabelle - 2016',  'Jubaland - 2016',  'Puntland - 2016',  'South West - 2016',  'Somaliland - 2016',  'Unattributed - 2016', 'FGS - 2017', 'Benadir - 2017', 'Galmudug - 2017', 'Hiiraan & Middle Shabelle - 2017', 'Jubaland - 2017', 'Puntland - 2017', 'South West - 2017', 'Somaliland - 2017', 'Unattributed - 2017'],
-      columnsToDisplay: ['Project title', 'NDP Pillar', 'Primary Sector', 'FGS - 2015', 'Benadir - 2015', 'Galmudug - 2015', 'Hiiraan & Middle Shabelle - 2015', 'Jubaland - 2015', 'Puntland - 2015', 'South West - 2015', 'Somaliland - 2015', 'Unattributed - 2015', 'FGS - 2016',  'Benadir - 2016',  'Galmudug - 2016',  'Hiiraan & Middle Shabelle - 2016',  'Jubaland - 2016',  'Puntland - 2016',  'South West - 2016',  'Somaliland - 2016',  'Unattributed - 2016', 'FGS - 2017', 'Benadir - 2017', 'Galmudug - 2017', 'Hiiraan & Middle Shabelle - 2017', 'Jubaland - 2017', 'Puntland - 2017', 'South West - 2017', 'Somaliland - 2017', 'Unattributed - 2017'],
+      locations,
+      gridColumns: ['Location', 'Project title', 'Start Date', 'End Date', 'NDP Pillar', 'SubSector', 'Funders', '2015 Project Location Allocation', '2016 Project Location Allocation', '2017 Project Location Allocation', 'Location Total 2015-17', 'Project objectives / purpose', 'Implementers'],
+      columnsToDisplay: ['Project title', 'Start Date', 'End Date', 'NDP Pillar', 'SubSector', '2015 Project Location Allocation', '2016 Project Location Allocation', '2017 Project Location Allocation', 'Location Total 2015-17'],
       searchQuery: '',
       displayNames: {
         'Project title': 'Project Title',
+        'Location Total 2015-17': 'Total Project Location Value (2015-17)',
+        '2015 Project Location Allocation': '2015',
+        '2016 Project Location Allocation': '2016',
+        '2017 Project Location Allocation': '2017',
+        'SubSector': 'Primary Sector',
       },
     };
   },
   methods: {
-    allcap(value) {
-      return value.toUpperCase();
-    },
-    formatNumber(value) {
-      return accounting.formatNumber(value, 0);
-    },
-    formatDate(value, fmt = 'MMM, YYYY') {
-      return (value == null) ? '' : moment(value, 'MMM, YYYY').format(fmt);
-    },
-    // eslint-disable-next-line
-    onCellClicked(data, field, event) {
-      // eslint-disable-next-line
-      console.log('cellClicked: ', field.name);
-      this.$refs.vuetable.toggleDetailRow(data.id);
-    },
     exportCSV() {
-      jsonexport(projects, (err, csv) => {
+      jsonexport(locations, (err, csv) => {
         if (err) return console.log(err);
         (function downloadCSV(args) {
           if (csv === null) return;
-          const filename = 'Somalia_Aid_Flows_Project_Data.csv';
+          const filename = 'Somalia_Aid_Flows_Project_Location_Data.csv';
           if (!csv.match(/^data:text\/csv/i)) {
             csv = 'data:text/csv;charset=utf-8,' + csv;
           }

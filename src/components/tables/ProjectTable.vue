@@ -105,21 +105,6 @@ export default {
     };
   },
   methods: {
-    allcap(value) {
-      return value.toUpperCase();
-    },
-    formatNumber(value) {
-      return accounting.formatNumber(value, 0);
-    },
-    formatDate(value, fmt = 'MMM, YYYY') {
-      return (value == null) ? '' : moment(value, 'MMM, YYYY').format(fmt);
-    },
-    // eslint-disable-next-line
-    onCellClicked(data, field, event) {
-      // eslint-disable-next-line
-      console.log('cellClicked: ', field.name);
-      this.$refs.vuetable.toggleDetailRow(data.id);
-    },
     exportCSV() {
       jsonexport(projects, (err, csv) => {
         if (err) return console.log(err);

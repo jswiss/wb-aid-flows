@@ -116,9 +116,6 @@ export default {
     };
   },
   methods: {
-    allcap(value) {
-      return value.toUpperCase();
-    },
     exportCSV() {
       jsonexport(funds, (err, csv) => {
         if (err) return console.log(err);

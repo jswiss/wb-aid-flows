@@ -99,8 +99,6 @@ import store from '../../vuex/store';
 
 const donors = store.state.donors;
 
-console.log(donors);
-
 export default {
   name: 'DonorTable',
   components: {
@@ -124,9 +122,6 @@ export default {
     };
   },
   methods: {
-    allcap(value) {
-      return value.toUpperCase();
-    },
     exportCSV() {
       jsonexport(donors, (err, csv) => {
         if (err) return console.log(err);

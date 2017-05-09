@@ -13,7 +13,18 @@
           <h3 class="title is-3">Basic Information</h3>
         </div>
         <div id="basic-info" class="info-box">
-          <div id="pillars" class="columns is-mobile">
+          <div id="dates" class="columns is-mobile">
+            <div class="column is-5" id="start-date">
+              <h4 class="title is-4 is-bold">Start Date:</h4>
+              <p class="date-text">{{ project['Start Date'] || 'n/a' }}</p>
+            </div>
+            <div class="column is-2"></div>
+            <div class="column is-5" id="end-date">
+              <h4 class="title is-4">End Date:</h4>
+              <p class="date-text">{{ project['End Date'] || 'n/a'}}</p>
+            </div>
+          </div>
+          <div id="dates" class="columns is-mobile">
             <div class="column is-4">
               <h4 class="title is-4 is-bold"><span class="ndp">NDP Pillar:</span></h4>
               <p class="pillar">{{ project['NDP Pillar'] }}</p>
