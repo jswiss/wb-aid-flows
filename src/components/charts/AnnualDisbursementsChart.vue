@@ -1,6 +1,12 @@
 <!-- Chart2 -->
 <template lang="html">
-  <div id="container">
+  <div>
+    <div id="container"></div>
+    <div class="disclaimer">
+      <p class="disclaimer-text">
+        * For more information, please visit the <router-link to="/tables/donors">donors table</router-link>.
+      </p>
+    </div>
   </div>
 </template>
 <script type="text/javascript">
@@ -86,5 +92,11 @@
     height: 600px;
     margin: 0;
     padding: 0;
+  }
+  .disclaimer-text {
+    margin-left: 10%;
+    font-style: italic;
+    font-size: 12px;
+    color: gray;
   }
 </style>
