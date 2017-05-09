@@ -1,5 +1,5 @@
  <!--tree2017 component-->
-<template v-if="!seen">
+<template>
   <div id="treemap-=content" class="columns is-mobile">
     <div class="column">
       <div id="container" style="width: 100%; height: 600px;"></div>
@@ -50,6 +50,7 @@ tree2017 = [{
     }
   })
 }];
+
 export default {
   name: 'TreeMap2017',
   data() {
@@ -60,8 +61,11 @@ export default {
   mounted() {
     this.treeMap();
   },
+  watch: {
+  },
   methods: {
     treeMap() {
+
       const colorScheme = ['#45B9EA', '#262261', '#716558', '#594A41', '#594A41'];
       const colorShades = ['#45B9EA', '#6ac7ee', '#8fd5f2', '#b4e3f6', '#d9f1fa', '#ecf8fc'];
       const colorRange = ['#262261', '#45B9EA'];
