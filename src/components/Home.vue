@@ -9,15 +9,15 @@
     <div class="field">
       <p class="control" id="radios">
         <label class="radio">
-          <input type="radio" name="question" value="2017"  v-model="tree2017" v-on:click="tree = 2017">
+          <input type="radio" name="question" value="2017" v-on:click="tree = 2017, tree2017 = true">
           2017
         </label>
         <label class="radio">
-          <input type="radio" name="question" value="2016" v-on:click="tree = 2016">
+          <input type="radio" name="question" value="2016" v-on:click="tree = 2016, tree2017 = false">
           2016
         </label>
         <label class="radio">
-          <input type="radio" name="question" value="2015" v-on:click="tree = 2015">
+          <input type="radio" name="question" value="2015" v-on:click="tree = 2015, tree2017 = false">
           2015
         </label>
       </p>
