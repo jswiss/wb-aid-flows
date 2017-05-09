@@ -6,7 +6,6 @@
 </template>
 <script type="text/javascript">
   anychart.licenseKey("80outrage-432962df-89451e8b");
-
   export default {
     name: 'OdaChart',
     mounted() {
@@ -28,28 +27,21 @@
           ['2016', 692, 620],
           ['2017', 613, 614],
         ]);
-
         // map the data
         const seriesData_1 = data.mapAs({x: [0], value: [1]});
         const seriesData_2 = data.mapAs({x: [0], value: [2]});
-
         // create the chart
         const chart = anychart.area();
-
         // enable stacked area chart
         chart.yScale().stackMode('value');
-
         // enable interactivity
         chart.interactivity().hoverMode('single');
-
         // get the chart's tooltip
         const tooltip = chart.tooltip();
         tooltip.displayMode('union');
-
         // create the first series, set the data and name
         const series1 = chart.area(seriesData_1);
         series1.name('Development');
-
         // configure the visual settings of the first series
         series1.fill("#45B9EA", 0.3);
         series1.hoverFill("#45B9EA", 0.3);
@@ -57,11 +49,9 @@
         series1.stroke("#45B9EA", 1, "10 5", "round");
         series1.hoverStroke("#45B9EA", 2, "10 5", "round");
         series1.selectStroke("#45B9EA", 4, "10 5", "round");
-
         // create the second series, set the data and name
         const series2 = chart.area(seriesData_2);
         series2.name('Humanitarian');
-
         // configure the visual settings of the second series
         series2.fill("#00D1B2", 0.3);
         series2.hoverFill("#00D1B2", 0.3);
@@ -70,19 +60,15 @@
         series2.stroke("#00D1B2");
         series2.hoverStroke("#00D1B2", 2);
         series2.selectStroke("#00D1B2", 4);
-
         // set the chart title
         chart.title('ODA Trends in Somalia, 2006 - 2017 (in millions USD)');
-
         // set the titles of the axes
         const xAxis = chart.xAxis();
         xAxis.title("Year");
         const yAxis = chart.yAxis();
         yAxis.title("USD");
-
         // set the container id
         chart.container("container");
-
         // initiate drawing the chart
         chart.draw();
       },

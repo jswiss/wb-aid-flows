@@ -14,11 +14,13 @@
           </router-link>
         </div>
         <div class="outline">
-          <router-link class="nav-item" to="/charts/chart-2" >
+          <router-link class="nav-item" to="/charts/annual-disbursements-by-category" >
             <div id="chart-selector-2" class="column">
-              <i class="fa fa-line-chart fa-4x"></i>
+              <i class="fa fa-bar-chart fa-4x"></i>
               <h4 class="sidebar-title">
-                Chart 2
+                Category 
+                <br>
+                Disbursements
               </h4>
             </div>
           </router-link>

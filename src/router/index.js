@@ -1,9 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '@/components/Home';
-import TreeMap2017 from '@/components/treemap/TreeMap2017';
-import TreeMap2016 from '@/components/treemap/TreeMap2016';
-import TreeMap2015 from '@/components/treemap/TreeMap2015';
 import About from '@/components/about/About';
 import Tables from '@/components/tables/Tables';
 import ProjectTable from '@/components/tables/ProjectTable';
@@ -12,7 +9,7 @@ import LocationsTable from '@/components/tables/LocationsTable';
 import FundsTable from '@/components/tables/FundsTable';
 import Charts from '@/components/charts/Charts';
 import OdaChart from '@/components/charts/OdaChart';
-import Chart2 from '@/components/charts/Chart2';
+import AnnualDisbursementsChart from '@/components/charts/AnnualDisbursementsChart';
 import Chart3 from '@/components/charts/Chart3';
 import Chart4 from '@/components/charts/Chart4';
 import Chart5 from '@/components/charts/Chart5';
@@ -59,9 +56,9 @@ const routes = [
         name: 'OdaChart',
         component: OdaChart,
       }, {
-        path: 'chart-2',
-        name: 'Chart2',
-        component: Chart2,
+        path: 'annual-disbursements-by-category',
+        name: 'AnnualDisbursementsChart',
+        component: AnnualDisbursementsChart,
       }, {
         path: 'chart-3',
         name: 'Chart3',

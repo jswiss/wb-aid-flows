@@ -5,7 +5,6 @@
     </div>-->
     <div id="print-area">
       <div id="title">
-        <div class="buffer"></div>
         <h1 id="project-title" class="title is-1"> {{ project['Project title'] }}</h1>
       </div>
       <div class="info-box">
@@ -251,6 +250,9 @@
     margin-top: 1%;
   }
   #focuses {
+    margin-top: 1%;
+  }
+  #dates {
     margin-top: 1%;
   }
   @media print {
