@@ -51,8 +51,21 @@
         <template slot="Sum 2015-17" scope="props">
           <p>${{ props.entry['Sum 2015-17']  | currency }}</p>
         </template>
+        <template slot="2015 Disbursements (USD)" scope="props">
+          <p>{{ props.entry['2015 Disbursements (USD)']  | currency }}</p>
+        </template>
+        <template slot="2016 Disbursements (USD)" scope="props">
+          <p>{{ props.entry['2016 Disbursements (USD)']  | currency }}</p>
+        </template>
+        <template slot="2017 Disbursements (USD)" scope="props">
+          <p>{{ props.entry['2017 Disbursements (USD)']  | currency }}</p>
+        </template>
         <template slot="child" scope="props">
           <b>Project Description: </b>{{ props.entry['Project objectives / purpose'] || 'n/a' }}
+          <br>
+          <br>
+          <b>Funders: </b>{{ props.entry['Funders'] || 'n/a' }}
+          <br>
           <br>
           <b>Implementers: </b>{{ props.entry['Implementers'] || 'n/a' }}
         </template>
@@ -79,12 +92,15 @@ export default {
   data() {
     return {
       projects,
-      gridColumns: ['Project title', 'Start Date', 'End Date ', 'NDP Pillar', 'Primary Sector', 'Funders', 'Sum 2015-17', 'Project objectives / purpose', 'Implementers'],
-      columnsToDisplay: ['Project title', 'Start Date', 'End Date ', 'NDP Pillar', 'Primary Sector', 'Funders', 'Sum 2015-17'],
+      gridColumns: ['Project title', 'Start Date', 'End Date ', 'NDP Pillar', 'Primary Sector', 'Funders', '2015 Disbursements (USD)', '2016 Disbursements (USD)', '2017 Disbursements (USD)', 'Sum 2015-17', 'Project objectives / purpose', 'Implementers'],
+      columnsToDisplay: ['Project title', 'Start Date', 'End Date ', 'NDP Pillar', 'Primary Sector', '2015 Disbursements (USD)', '2016 Disbursements (USD)', '2017 Disbursements (USD)', 'Sum 2015-17'],
       searchQuery: '',
       displayNames: {
         'Project title': 'Project Title',
-        'Sum 2015-17': 'Project Value (2015 - 17)',
+        'Sum 2015-17': 'Project Value - (2015 - 17)',
+        '2015 Disbursements (USD)': '2015',
+        '2016 Disbursements (USD)': '2016',
+        '2017 Disbursements (USD)': '2017',
       },
     };
   },
