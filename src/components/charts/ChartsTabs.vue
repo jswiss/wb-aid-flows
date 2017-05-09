@@ -40,11 +40,13 @@
           </router-link>
         </div>
         <div class="outline">
-          <router-link class="nav-item" to="/charts/chart-4" >
+          <router-link class="nav-item" to="/charts/aid-via-funds" >
             <div id="chart-selector-4" class="column">
               <i class="fa fa-line-chart fa-4x"></i>
               <h4 class="sidebar-title">
-                Chart 4
+                Aid via
+                <br>
+                Funds
               </h4>
             </div>
           </router-link>

@@ -6,7 +6,7 @@
       <oda-chart v-if="['OdaChart'].indexOf($route.name) > -1"></oda-chart>
       <annual-disbursements-chart v-if="['AnnualDisbursementsChart'].indexOf($route.name) > -1"></annual-disbursements-chart>
       <aid-location-chart v-if="['AidLocationChart'].indexOf($route.name) > -1"></aid-location-chart>
-      <chart-4 v-if="['Chart4'].indexOf($route.name) > -1"></chart-4>
+      <aid-via-funds v-if="['AidViaFunds'].indexOf($route.name) > -1"></aid-via-funds>
       <chart-5 v-if="['Chart5'].indexOf($route.name) > -1"></chart-5>
       <chart-6 v-if="['Chart6'].indexOf($route.name) > -1"></chart-6>
     </div>
@@ -17,7 +17,7 @@
   import OdaChart from './OdaChart';
   import AnnualDisbursementsChart from './AnnualDisbursementsChart';
   import AidLocationChart from './AidLocationChart';
-  import Chart4 from './Chart4';
+  import AidViaFunds from './AidViaFunds';
   import Chart5 from './Chart5';
   import Chart6 from './Chart6';
 
@@ -28,7 +28,7 @@
       OdaChart,
       AnnualDisbursementsChart,
       AidLocationChart,
-      Chart4,
+      AidViaFunds,
       Chart5,
       Chart6,
     },

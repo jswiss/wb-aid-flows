@@ -11,7 +11,7 @@ import Charts from '@/components/charts/Charts';
 import OdaChart from '@/components/charts/OdaChart';
 import AnnualDisbursementsChart from '@/components/charts/AnnualDisbursementsChart';
 import AidLocationChart from '@/components/charts/AidLocationChart';
-import Chart4 from '@/components/charts/Chart4';
+import AidViaFunds from '@/components/charts/AidViaFunds';
 import Chart5 from '@/components/charts/Chart5';
 import Chart6 from '@/components/charts/Chart6';
 import Project from '@/components/projects/Project';
@@ -64,9 +64,9 @@ const routes = [
         name: 'AidLocationChart',
         component: AidLocationChart,
       }, {
-        path: 'chart-4',
-        name: 'Chart4',
-        component: Chart4,
+        path: 'aid-via-funds',
+        name: 'AidViaFunds',
+        component: AidViaFunds,
       }, {
         path: 'chart-5',
         name: 'Chart5',
