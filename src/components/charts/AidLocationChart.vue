@@ -1,10 +1,10 @@
-<!-- AnnualDisbursementsChart -->
+<!-- AidLocationChart -->
 <template lang="html">
   <div>
     <div id="container"></div>
     <div class="disclaimer">
       <p class="disclaimer-text">
-        * For more information, please visit the <router-link to="/tables/donors">donors table</router-link>.
+        * For more information, please visit the <router-link to="/tables/locations">locations table</router-link>.
       </p>
     </div>
   </div>
@@ -13,15 +13,19 @@
   anychart.licenseKey("80outrage-432962df-89451e8b");
 
   export default {
-    name: 'AnnualDisbursementsChart',
+    name: 'AidLocationChart',
     data() {
       return {
         data: [
-          ['2015', 610821157, 588390258, 323847494],
-          ['2016', 692250352, 619617477, 366833105],
-          ['2017', 612832086, 613980507, 325129693],
-          ['2018', 276145677, 71420635, 6611111],
-          ['2019', 183244513, 68753968, 0],
+          ['FGS', 66489940, 135406466, 68035697],
+          ['Benadir', 37450545, 52215286, 51310327],
+          ['Galmudug', 17752762, 37310628, 25632473],
+          ['HiirShabelle', 30315436, 47152634, 29799846],
+          ['Jubaland', 47587122, 75430191, 50740273],
+          ['Puntland', 73759808, 87315774, 77520491],
+          ['South West', 43471491, 75425427, 37632682],
+          ['Somaliland', 117306158, 134762574, 119241272],
+          ['Unattributed', 78928855, 121682506, 103496046],
         ]
       };
     },
@@ -42,19 +46,19 @@
 
         // create the first series, set the data and name
         const series1 = chart.column(seriesData_1);
-        series1.name('Development');
+        series1.name('2015');
         series1.fill('#45B9EA', 0.8);
         series1.stroke(7, '#45B9EA');
         
         // create the second series, set the data and name
         const series2 = chart.column(seriesData_2);
-        series2.name('Humanitarian');
+        series2.name('2016');
         series2.fill('#00D1B2', 0.8);
         series2.stroke(7, '#00D1B2');
         
         // create the third series, set the data and name
         const series3 = chart.column(seriesData_3);
-        series3.name('Peacekeeping');
+        series3.name('2017');
         series3.fill('#716558', 0.8);
         series3.stroke(7, '#716558');
 
@@ -65,14 +69,14 @@
         chart.barGroupsPadding(2);
 
         // set the chart title
-        chart.title('Cumulative Aid Flow By Category and Year, USD');
+        chart.title('Aid by Location and Year, 2015-17 (USD)');
 
         // format the tooltip
         chart.tooltip().format('{%SeriesName}: ${%Value}{groupsSeparator:\\,}');
 
         // set the titles of the axes
         const xAxis = chart.xAxis();
-        xAxis.title('Aid Flow Category');
+        xAxis.title('Location');
         const yAxis = chart.yAxis();
         yAxis.title('USD');
 
@@ -100,3 +104,4 @@
     color: gray;
   }
 </style>
+

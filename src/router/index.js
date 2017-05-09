@@ -10,7 +10,7 @@ import FundsTable from '@/components/tables/FundsTable';
 import Charts from '@/components/charts/Charts';
 import OdaChart from '@/components/charts/OdaChart';
 import AnnualDisbursementsChart from '@/components/charts/AnnualDisbursementsChart';
-import Chart3 from '@/components/charts/Chart3';
+import AidLocationChart from '@/components/charts/AidLocationChart';
 import Chart4 from '@/components/charts/Chart4';
 import Chart5 from '@/components/charts/Chart5';
 import Chart6 from '@/components/charts/Chart6';
@@ -60,9 +60,9 @@ const routes = [
         name: 'AnnualDisbursementsChart',
         component: AnnualDisbursementsChart,
       }, {
-        path: 'chart-3',
-        name: 'Chart3',
-        component: Chart3,
+        path: 'aid-location',
+        name: 'AidLocationChart',
+        component: AidLocationChart,
       }, {
         path: 'chart-4',
         name: 'Chart4',

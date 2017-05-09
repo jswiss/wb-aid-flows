@@ -18,9 +18,9 @@
             <div id="chart-selector-2" class="column">
               <i class="fa fa-bar-chart fa-4x"></i>
               <h4 class="sidebar-title">
-                Category 
+                Aid by 
                 <br>
-                Disbursements
+                Category
               </h4>
             </div>
           </router-link>
@@ -28,11 +28,13 @@
       </div>
       <div class="columns">
         <div class="outline">
-          <router-link class="nav-item" to="/charts/chart-3" >
+          <router-link class="nav-item" to="/charts/aid-location" >
             <div id="chart-selector-3" class="column">
-              <i class="fa fa-area-chart fa-4x"></i>
+              <i class="fa fa-bar-chart fa-4x"></i>
               <h4 class="sidebar-title">
-                Chart 3
+                Aid by
+                <br>
+                Location
               </h4>
             </div>
           </router-link>

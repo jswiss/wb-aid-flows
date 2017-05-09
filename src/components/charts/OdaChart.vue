@@ -43,9 +43,9 @@
         const series1 = chart.area(seriesData_1);
         series1.name('Development');
         // configure the visual settings of the first series
-        series1.fill("#45B9EA", 0.3);
-        series1.hoverFill("#45B9EA", 0.3);
-        series1.selectFill("#45B9EA", 0.5);
+        series1.fill("#45B9EA", 0.5);
+        series1.hoverFill("#45B9EA", 0.8);
+        series1.selectFill("#45B9EA", 0.6);
         series1.stroke("#45B9EA", 1, "10 5", "round");
         series1.hoverStroke("#45B9EA", 2, "10 5", "round");
         series1.selectStroke("#45B9EA", 4, "10 5", "round");
@@ -53,9 +53,9 @@
         const series2 = chart.area(seriesData_2);
         series2.name('Humanitarian');
         // configure the visual settings of the second series
-        series2.fill("#00D1B2", 0.3);
-        series2.hoverFill("#00D1B2", 0.3);
-        series2.selectFill("#00D1B2", 0.5);
+        series2.fill("#00D1B2", 0.5);
+        series2.hoverFill("#00D1B2", 0.8);
+        series2.selectFill("#00D1B2", 0.6);
         // series2.hatchFill("zigzag", "#808080", 1, 15);
         series2.stroke("#00D1B2");
         series2.hoverStroke("#00D1B2", 2);
