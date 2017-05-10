@@ -4,7 +4,7 @@
     <div id="container"></div>
     <div class="disclaimer">
       <p class="disclaimer-text">
-        * For more information, please visit the <router-link to="/tables/donors">donors table</router-link>.
+        * For more information, please visit the <router-link to="/tables/funds">funds table</router-link>.
       </p>
     </div>
   </div>
@@ -36,6 +36,10 @@
 
         // create the chart
         const chart = anychart.line();
+
+        // enable the grid
+        const grid = chart.grid();
+        grid.enabled(true);
 
         // set the interactivity mode
         chart.interactivity().hoverMode("single");

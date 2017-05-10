@@ -54,11 +54,13 @@
       </div>
       <div class="columns">
         <div class="outline">
-          <router-link class="nav-item" to="/charts/chart-5" >
+          <router-link class="nav-item" to="/charts/aid-by-ndp-pillar" >
             <div id="chart-selector-5" class="column">
               <i class="fa fa-bar-chart fa-4x"></i>
               <h4 class="sidebar-title">
-                Chart 5
+                Aid by
+                <br>
+                NDP Pillar
               </h4>
             </div>
           </router-link>

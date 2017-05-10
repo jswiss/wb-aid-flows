@@ -7,7 +7,7 @@
       <annual-disbursements-chart v-if="['AnnualDisbursementsChart'].indexOf($route.name) > -1"></annual-disbursements-chart>
       <aid-location-chart v-if="['AidLocationChart'].indexOf($route.name) > -1"></aid-location-chart>
       <aid-via-funds v-if="['AidViaFunds'].indexOf($route.name) > -1"></aid-via-funds>
-      <chart-5 v-if="['Chart5'].indexOf($route.name) > -1"></chart-5>
+      <aid-by-ndp-pillar v-if="['AidByNdpPillar'].indexOf($route.name) > -1"></aid-by-ndp-pillar>
       <chart-6 v-if="['Chart6'].indexOf($route.name) > -1"></chart-6>
     </div>
   </div>
@@ -18,7 +18,7 @@
   import AnnualDisbursementsChart from './AnnualDisbursementsChart';
   import AidLocationChart from './AidLocationChart';
   import AidViaFunds from './AidViaFunds';
-  import Chart5 from './Chart5';
+  import AidByNdpPillar from './AidByNdpPillar';
   import Chart6 from './Chart6';
 
   export default {
@@ -29,7 +29,7 @@
       AnnualDisbursementsChart,
       AidLocationChart,
       AidViaFunds,
-      Chart5,
+      AidByNdpPillar,
       Chart6,
     },
   };

@@ -78,7 +78,7 @@ export default {
       chart.headers().fontSize(15);
       chart.labels().format('{%name}');
       chart.labels().textWrap('byLetter')
-      chart.labels().fontSize(12);
+      chart.labels().fontSize(11);
       chart.labels().fontWeight(900);
       chart.tooltip().titleFormat('{%name}');
       chart.tooltip().format('${%Value}{groupsSeparator:\\,}');

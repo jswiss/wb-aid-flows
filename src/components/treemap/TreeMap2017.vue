@@ -79,7 +79,7 @@ export default {
       chart.headers().fontSize(15);
       chart.headers().fontWeight('bold');
       chart.labels().format("{%name}");
-      chart.labels().fontSize(12);
+      chart.labels().fontSize(11);
       chart.labels().fontWeight(900);
       chart.tooltip().titleFormat("{%name}");
       chart.tooltip().format("${%Value}{groupsSeparator:\\,}");
