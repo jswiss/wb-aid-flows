@@ -6,7 +6,6 @@ import App from './App';
 import store from './vuex/store';
 import router from './router';
 import navbar from './components/Navbar';
-import './app.scss';
 
 Vue.filter('currency', val => accounting.formatNumber(val));
 Vue.filter('decimal', val => accounting.formatNumber(val, 2));
