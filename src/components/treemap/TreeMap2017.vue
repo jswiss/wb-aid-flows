@@ -40,7 +40,7 @@ tree2017 = [{
                 return {
                   name: project.key,
                   value: project.values,
-                  url: `http://somaliaaidflows.so.s3-website-us-east-1.amazonaws.com/projects/${project.key}`,
+                  url: `http://somaliaaidflows.so/projects/${project.key}`,
                 }
               })
             }
