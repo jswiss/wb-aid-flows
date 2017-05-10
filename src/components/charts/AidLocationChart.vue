@@ -80,6 +80,9 @@
         const yAxis = chart.yAxis();
         yAxis.title('USD');
 
+        const yLabels = chart.yAxis(0).labels();
+        yLabels.format("${%Value}{groupsSeparator:\\,}");
+
         // set the container id
         chart.container('container');
 

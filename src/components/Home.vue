@@ -64,11 +64,18 @@ export default {
 
 <style scoped>
   .disclaimer-text {
+    margin-left: 2%;
     font-style: italic;
     font-size: 12px;
     color: gray;
   }
   #topmost {
     margin-top: 25px;
+  }
+  .control {
+    margin-left: 20px;
+  }
+  .field {
+    margin: 1%;
   }
 </style>

@@ -13,7 +13,7 @@
   anychart.licenseKey("80outrage-432962df-89451e8b");
 
   export default {
-    name: 'AnnualDisbursementsChart',
+    name: 'AidByCategory',
     data() {
       return {
         data: [
@@ -75,6 +75,9 @@
         xAxis.title('Aid Flow Category');
         const yAxis = chart.yAxis();
         yAxis.title('USD');
+
+        const yLabels = chart.yAxis(0).labels();
+        yLabels.format("${%Value}{groupsSeparator:\\,}");
 
         // set the container id
         chart.container('container');

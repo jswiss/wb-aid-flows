@@ -14,7 +14,7 @@
           </router-link>
         </div>
         <div class="outline">
-          <router-link class="nav-item" to="/charts/annual-disbursements-by-category" >
+          <router-link class="nav-item" to="/charts/aid-by-category" >
             <div id="chart-selector-2" class="column">
               <i class="fa fa-bar-chart fa-4x"></i>
               <h4 class="sidebar-title">
@@ -66,11 +66,13 @@
           </router-link>
         </div>
           <div class="outline">
-            <router-link class="nav-item" to="/charts/chart-6">
+            <router-link class="nav-item" to="/charts/aid-on-treasury">
               <div id="chart-selector-6" class="column">
                 <i class="fa fa-bar-chart fa-4x"></i>
                 <h4 class="sidebar-title">
-                  Chart 6
+                 Aid Delivered
+                 <br>
+                 on Treasury
                 </h4>
               </div>
             </router-link>

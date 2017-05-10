@@ -8,7 +8,7 @@
       </p>
       <br>
       <p>
-        This website presents some of the key findings from the aid mapping exercise conducted in 2016. Additional data and analysis is provided in the 2017 report “Aid Flows in Somalia.” The mapping exercise was led by the Aid Coordination Unit (ACU) in the Office of the Prime Minister. Analytical support was provided by the World Bank and United Nations. Coordination support was also provided by the Ministry of Planning, Investment, and Economic Promotion (MoPIEP). 
+        This website presents some of the key findings from the aid mapping exercise conducted in 2016. Additional data and analysis is provided in the 2017 report <a href="#">Aid Flows in Somalia</a>. The mapping exercise was led by the Aid Coordination Unit (ACU) in the Office of the Prime Minister. Analytical support was provided by the World Bank and United Nations. Coordination support was also provided by the Ministry of Planning, Investment, and Economic Promotion (MoPIEP). 
       </p>
       <br>
       <p>
@@ -25,6 +25,10 @@
           With a launch planned for the end of the year, the government will conduct its fourth interim aid mapping exercise in mid-2017 to ensure data is: i) collected in time to inform the 2018 budget, ii) disseminated to inform planning and coordination for NDP implementation, and iii) used to populate the online system before it comes online. This area of work has been led by the Aid Coordination Unit (ACU) and the Ministry of Planning and International Cooperation (MOPIC, which in March 2017 became the Ministry of Planning, Investment, and Economic Promotion - MoPIEP) in collaboration with Ministries of Planning in the Federal Member States, with the support of UNDP and the World Bank.
         </p>
       </div>
+      <br>
+      <p>
+        For questions about the report or aid mapping exercise, please contact Rodo Ali, Aid Coordination Unit, <a href="mailto:acu.somalia@gmail.com?Subject=Somalia Aid Flows">acu.somalia@gmail.com</a>.
+      </p>
     </div>
     <div class="column is-2"></div>
   </div>

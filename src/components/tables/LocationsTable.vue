@@ -97,10 +97,10 @@ import store from '../../vuex/store';
 const locations = store.state.locations;
 
 locations.forEach(d => {
-  d['2015 Project Location Allocation'] = parseInt(d['2015 Project Location Allocation']);
-  d['2016 Project Location Allocation'] = parseInt(d['2016 Project Location Allocation']);
-  d['2017 Project Location Allocation'] = parseInt(d['2017 Project Location Allocation']);
-  d['Location Total 2015-17'] = parseInt(d['Location Total 2015-17']);
+  d['2015 Project Location Allocation'] = +(d['2015 Project Location Allocation']);
+  d['2016 Project Location Allocation'] = +(d['2016 Project Location Allocation']);
+  d['2017 Project Location Allocation'] = +(d['2017 Project Location Allocation']);
+  d['Location Total 2015-17'] = +(d['Location Total 2015-17']);
 });
 
 export default {

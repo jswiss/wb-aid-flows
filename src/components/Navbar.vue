@@ -1,6 +1,9 @@
 <template lang="html">
   <nav class="nav has-shadow" >
     <div class="nav-left">
+      <router-link class="nav-item" to="/">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Coat_of_arms_of_Somalia.svg/200px-Coat_of_arms_of_Somalia.svg.png" alt="FGS Emblem">
+      </router-link>
       <router-link class="nav-item is-brand" to="/">
         Somalia Aid Flows
       </router-link>

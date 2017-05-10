@@ -17,9 +17,9 @@
     data() {
       return {
         data: [
-          ['2015', 0.301250295, 0.228031754],
-          ['2016', 0.259353468, 0.208068583],
-          ['2017', 0.20904035, 0.156069152],
+          ['2015', 0.301, 0.228],
+          ['2016', 0.259, 0.208],
+          ['2017', 0.209, 0.156],
         ]
       };
     },
@@ -71,6 +71,15 @@
         xAxis.title('Year');
         const yAxis = chart.yAxis();
         yAxis.title('Annual Aid, %');
+
+        const yLabels = chart.yAxis(0).labels();
+        yLabels.format(function() {
+          return `${this.value * 100}%`;
+        });
+
+        // get ticks
+        const yTicks = chart.yScale().ticks();
+        yTicks.interval(.05);
 
         // set the container id
         chart.container('container');

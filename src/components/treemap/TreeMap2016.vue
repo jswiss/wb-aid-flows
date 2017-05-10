@@ -2,7 +2,7 @@
 <template v-if="!seen">
   <div id="treemap-=content" class="columns is-mobile">
     <div class="column">
-    <div id="container" style="width: 100%; height: 600px;"></div>
+    <div id="container" style="width: 100%; height: 500px;"></div>
     </div>
   </div>
 </template>
@@ -69,15 +69,12 @@ export default {
       const colorRange = ['#262261', '#45B9EA'];
       const year2016 = anychart.data.tree(tree2016, anychart.enums.TreeFillingMethod.AS_TREE);
 
-        // set it so a click adds the class 'selected'. 
-        // if it has 'selected' class, pass variable to chart function
-
       const chart = anychart.treeMap(year2016);
       chart.headers().format("{%name} :: Project disbursements: ${%value}{groupsSeparator:\\,}");
       chart.headers().fontWeight('bold');
       chart.headers().fontSize(15);
       chart.labels().format("{%name}");
-      chart.labels().fontSize(11);
+      chart.labels().fontSize(10.5);
       chart.labels().fontWeight(900);
       chart.tooltip().titleFormat("{%name}");
       chart.tooltip().format("${%Value}{groupsSeparator:\\,}");

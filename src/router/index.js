@@ -9,11 +9,11 @@ import LocationsTable from '@/components/tables/LocationsTable';
 import FundsTable from '@/components/tables/FundsTable';
 import Charts from '@/components/charts/Charts';
 import OdaChart from '@/components/charts/OdaChart';
-import AnnualDisbursementsChart from '@/components/charts/AnnualDisbursementsChart';
+import AidByCategory from '@/components/charts/AidByCategory';
 import AidLocationChart from '@/components/charts/AidLocationChart';
 import AidViaFunds from '@/components/charts/AidViaFunds';
 import AidByNdpPillar from '@/components/charts/AidByNdpPillar';
-import Chart6 from '@/components/charts/Chart6';
+import AidOnTreasury from '@/components/charts/AidOnTreasury';
 import Project from '@/components/projects/Project';
 
 Vue.use(Router);
@@ -56,9 +56,9 @@ const routes = [
         name: 'OdaChart',
         component: OdaChart,
       }, {
-        path: 'annual-disbursements-by-category',
-        name: 'AnnualDisbursementsChart',
-        component: AnnualDisbursementsChart,
+        path: 'aid-by-category',
+        name: 'AidByCategory',
+        component: AidByCategory,
       }, {
         path: 'aid-location',
         name: 'AidLocationChart',
@@ -72,9 +72,9 @@ const routes = [
         name: 'AidByNdpPillar',
         component: AidByNdpPillar,
       }, {
-        path: 'chart-6',
-        name: 'Chart6',
-        component: Chart6,
+        path: 'aid-on-treasury',
+        name: 'AidOnTreasury',
+        component: AidOnTreasury,
       },
     ],
   },
