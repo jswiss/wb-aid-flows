@@ -17,6 +17,9 @@
         <i class="fa fa-info-circle"></i>About
       </router-link>
     </div>
+    <div class="nav-right">
+      <a class="nav-item is-tab report" href="https://s3.eu-west-2.amazonaws.com/somaliaaidflows.so/assets/Aid+Flow+Booklet+2017.pdf">Download the Report</a>
+    </div>
   </nav>
 </template>
 <script type="text/javascript">
@@ -35,7 +38,6 @@ export default {
     font-weight: bold;
   }
 
-
 .nav { 
   position: fixed !important;
   top: 0;
@@ -43,5 +45,9 @@ export default {
   right: 0;
   z-index: 1030;
   margin-bottom: 40px;
+}
+
+.report {
+  font-weight: bold;
 }
 </style>

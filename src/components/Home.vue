@@ -81,8 +81,7 @@ export default {
   #support {
     text-align: center;
     margin: 2%;
-    font-style: italic;
-    font-size: 12px;
+    font-size: 11px;
     color: gray;
   }
 </style>

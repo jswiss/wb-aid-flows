@@ -37,9 +37,9 @@
         // set the data
         const data = anychart.data.set(this.data);
         // map the data
-        const seriesData_1 = data.mapAs({x: [0], value: [1]});
+        const seriesData_1 = data.mapAs({x: [0], value: [3]});
         const seriesData_2 = data.mapAs({x: [0], value: [2]});
-        const seriesData_3 = data.mapAs({x: [0], value: [3]});
+        const seriesData_3 = data.mapAs({x: [0], value: [1]});
 
         // create the chart
         const chart = anychart.column();
