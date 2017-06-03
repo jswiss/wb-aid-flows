@@ -76,6 +76,7 @@ export default {
       chart.headers().fontSize(15);
       chart.headers().fontWeight('bold');
       chart.labels().format("{%name}");
+      chart.labels().textWrap('byWord');
       chart.labels().fontSize(10.5);
       chart.labels().fontWeight(900);
       chart.tooltip().titleFormat("{%name}");
