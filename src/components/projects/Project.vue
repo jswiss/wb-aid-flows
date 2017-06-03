@@ -43,7 +43,7 @@
               <p class="desc-text">{{ project['Project objectives / purpose'] || 'n/a' }}</p>
             </div>
             <div class="column is-2"></div>
-            <div class="column is-5" id="project-website">
+            <div class="column is-4" id="project-website">
               <h4 class="title is-4">Project Website:</h4>
               <a v-bind:href="project['Links to project webpages or documents']"><p class="url">{{ project['Links to project webpages or documents'] || 'n/a'}}</p></a>
             </div>
