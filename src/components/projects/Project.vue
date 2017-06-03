@@ -20,7 +20,7 @@
             <div class="column is-2"></div>
             <div class="column is-5" id="end-date">
               <h4 class="title is-4">End Date:</h4>
-              <p class="date-text">{{ project['End Date'] || 'n/a'}}</p>
+              <p class="date-text">{{ project['End Date'] }}</p>
             </div>
           </div>
           <div id="dates" class="columns is-mobile">
@@ -214,7 +214,7 @@
           return project['Project title'] === projectName;
         }
         this.project = projects.find(findProject);
-        // console.log(this.project);
+        console.log(this.project);
       },
       printPage(el) {
         window.print();
