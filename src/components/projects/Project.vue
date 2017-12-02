@@ -5,7 +5,9 @@
     </div>-->
     <div id="print-area">
       <div id="title">
-        <h1 id="project-title" class="title is-1"> {{ project['Project title'] }}</h1>
+        <a id="title-link" v-bind:href="project['Links to project webpages or documents']">
+          <h1 id="project-title" class="title is-1"> {{ project['Project title'] }}</h1>
+        </a>
       </div>
       <div class="info-box">
         <div class="info-title">
@@ -303,6 +305,10 @@
   }
   #topmost {
     margin-top: 50px;
+  }
+  #title-link {
+    color: black;
+    text-decoration: none;
   }
 
 </style>
